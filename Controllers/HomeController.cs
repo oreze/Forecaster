@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Forecaster.Models;
+using Forecaster.Services;
 
 namespace Forecaster.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IOpenWeatherService _openWeather;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+            IOpenWeatherService openWeather)
         {
             _logger = logger;
+            _openWeather = openWeather;
         }
 
         public IActionResult Index()

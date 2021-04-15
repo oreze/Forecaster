@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Forecaster.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Forecaster
 {
@@ -24,6 +26,12 @@ namespace Forecaster
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            
+            using var log = new LoggerConfiguration()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            services.AddHttpClient<OpenWeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
