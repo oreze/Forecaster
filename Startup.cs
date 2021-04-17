@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Events;
 
 namespace Forecaster
 {
@@ -27,9 +28,12 @@ namespace Forecaster
         {
             services.AddControllersWithViews();
             
-            using var log = new LoggerConfiguration()
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .Enrich.FromLogContext()
                 .WriteTo.Console()
                 .CreateLogger();
+            Log.Information("Serilog is running!");
 
             services.AddHttpClient<OpenWeatherService>();
         }

@@ -10,7 +10,7 @@ using Serilog;
 
 namespace Forecaster.Services
 {
-    public class OpenWeatherService : IOpenWeatherService
+    public class OpenWeatherService
     {
         private HttpClient _client { get; }
         private IConfiguration _configuration { get; set; }
@@ -26,17 +26,18 @@ namespace Forecaster.Services
             _configuration = configuration;
         }
         
-        public async Task<IEnumerable<CityWeather>> GetLocationWeather()
+        public async Task<CityWeather> GetLocationWeather(string location, string units="metric")
         {
-            Log.Information(_configuration["Api:OpenWeather:ApiKey"]);
             var response = await _client.GetAsync(
-                "/data/2.5/weather?q=London&appid=" + _configuration["Api:OpenWeather:ApiKey"]);
+                "/data/2.5/" + 
+                "weather?q=" + location +
+                "&units=" + units +
+                "&appid=" + _configuration["Api:OpenWeather:ApiKey"]);
             
             response.EnsureSuccessStatusCode();
             
             using var responseStream = await response.Content.ReadAsStreamAsync();
-            Log.Information("XDDDDDDDDDDDDDDDDDDDDDDD");
-            return await JsonSerializer.DeserializeAsync<IEnumerable<CityWeather>>(responseStream);
+            return await JsonSerializer.DeserializeAsync<CityWeather>(responseStream);
         }
     }
 }

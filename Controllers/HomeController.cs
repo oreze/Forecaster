@@ -6,25 +6,32 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Forecaster.Models;
+using Forecaster.Models.Weather;
 using Forecaster.Services;
+using Serilog;
 
 namespace Forecaster.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IOpenWeatherService _openWeather;
+        private readonly OpenWeatherService _openWeather;
 
         public HomeController(ILogger<HomeController> logger,
-            IOpenWeatherService openWeather)
+            OpenWeatherService openWeather)
         {
             _logger = logger;
             _openWeather = openWeather;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var weather = await _openWeather.GetLocationWeather("London");
+            Log.Information("weather.Main");
+            Log.Debug("weather.Main");
+            Log.Warning("weather.Main");
+            Log.Fatal("XD");
+            return View(weather);
         }
 
         public IActionResult Privacy()

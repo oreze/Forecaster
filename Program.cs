@@ -14,11 +14,9 @@ namespace Forecaster
         public static void Main(string[] args)
         {
             
-            var host = new HostBuilder()
+            var host = CreateHostBuilder(args)
                 .ConfigureAppConfiguration((hostContext, builder) =>
                 {
-                    // Add other providers for JSON, etc.
-
                     if (hostContext.HostingEnvironment.IsDevelopment())
                     {
                         builder.AddUserSecrets<Program>();
