@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Forecaster.Models;
-using Forecaster.Models.Weather;
+using Forecaster.Models.OpenWeather;
 using Forecaster.Services;
 using Serilog;
 
