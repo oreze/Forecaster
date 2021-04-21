@@ -28,11 +28,12 @@ namespace Forecaster.Services
         
         public async Task<CityWeather> GetLocationWeather(string location, string units="metric")
         {
-            var response = await _client.GetAsync(
-                "/data/2.5/" + 
-                "weather?q=" + location +
-                "&units=" + units +
-                "&appid=" + _configuration["Api:OpenWeather:ApiKey"]);
+            var requestUri = "/data/2.5/" +
+                             "weather?q=" + location +
+                             "&units=" + units +
+                             "&appid=" + _configuration["Api:OpenWeather:ApiKey"];
+            
+            var response = await _client.GetAsync(requestUri);
             
             response.EnsureSuccessStatusCode();
             

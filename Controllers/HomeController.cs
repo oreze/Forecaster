@@ -14,24 +14,29 @@ namespace Forecaster.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly OpenWeatherService _openWeather;
 
-        public HomeController(ILogger<HomeController> logger,
-            OpenWeatherService openWeather)
-        {
-            _logger = logger;
+        public HomeController(OpenWeatherService openWeather)
+        { 
             _openWeather = openWeather;
         }
 
-        public async Task<IActionResult> Index()
+        // GET: Forecaster/Index
+        [HttpGet]
+        public IActionResult Index()
         {
-            var weather = await _openWeather.GetLocationWeather("London");
-            Log.Information("weather.Main");
-            Log.Debug("weather.Main");
-            Log.Warning("weather.Main");
-            Log.Fatal("XD");
-            return View(weather);
+            return View();
+        }      
+        
+        // POST: Forecaster/Index
+        [HttpPost]
+        public IActionResult Index([Bind("Location,Model")]GetWeather weather)
+        {
+            Log.Information("Weather object passed to \"get\" method");
+            Log.Information("Mode " + weather.Mode);
+            Log.Information("Location " + weather.Location);
+            
+            return RedirectToAction("Index", new { Controller = "Weather", Action="Index"});
         }
 
         public IActionResult Privacy()
