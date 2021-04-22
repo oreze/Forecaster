@@ -32,11 +32,11 @@ namespace Forecaster.Controllers
         [HttpPost]
         public IActionResult Index([Bind("Location,Model")]GetWeather weather)
         {
-            Log.Information("Weather object passed to \"get\" method");
+            Log.Information("GetWeather object passed to \"weather/index\" method");
             Log.Information("Mode " + weather.Mode);
             Log.Information("Location " + weather.Location);
             
-            return RedirectToAction("Index", new { Controller = "Weather", Action="Index"});
+            return RedirectToAction("Index", new { Controller = "Weather", Action="Index", location=weather.Location, mode=weather.Mode});
         }
 
         public IActionResult Privacy()

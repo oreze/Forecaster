@@ -1,8 +1,24 @@
-﻿@model Forecaster.Models.OpenWeather.CityWeather
+﻿@using System.Net
+@model Tuple<Forecaster.Models.OpenWeather.CityWeather, System.Net.HttpStatusCode>
 @{
     ViewData["Title"] = "XD";
 }
 
 <div class="text-center">
-    Weather here
+    @if (Model.Item2 == HttpStatusCode.OK)
+    {
+        <p>Temperature: <span style="background-color: gray">@Model.Item1.Main.Temp</span></p>
+    }
+    else if (Model.Item2 == HttpStatusCode.NotFound)
+    {
+        <p>This location doesn`t exist</p>
+    }
+    else
+    {
+        <p>Something went wrong. Try again.</p>
+    }
+
+    
+    
+            
 </div>

@@ -85,6 +85,32 @@ body {
   --input-border-color-active: rgb(76, 114, 176);
 }
 
+@media screen and (max-width: 576px){
+  #home-logo {
+    font-size: 4rem;
+  }
+  
+  #location-input-form > div > input[type=text] {
+    min-width: 150px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px) { 
+
+}
+
+@media (min-width: 768px) and (max-width: 992px) { 
+  
+}
+
+@media (min-width: 992px) and (max-width: 1200px) { 
+  
+}
+
+@media (min-width: 1200px) {
+  
+}
+
 input[type="text"] {
   box-sizing: content-box;
   border: 2px solid var(--input-border-color);
@@ -102,10 +128,33 @@ input[type="text"]:focus {
   background-color: var(--input-background-color-hover);
 }
 
+#location-input-form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#location-input-form > div > label {
+  font-size: 2rem;
+}
+
+#location-input-form > div > input[type=text] {
+  min-width: 250px;
+  line-height: 3rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 #city {
   padding: 0 5px .2rem 0;
   min-width: 35%;
   font-size: 1.5rem;
   align-content: center;
   text-align: center;
+}
+
+#mode-select {
+  min-width: 20%;
+  width: 30%;
 }

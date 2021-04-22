@@ -6,7 +6,10 @@ namespace Forecaster.Models.OpenWeather
 {
     public enum ModeEnum
     {
-        [Display(Name = "Current weather")]
-        Current
+        [Display(Name = "Current")]
+        Current,
+        [Display(Name = "Daily")]
+        Daily
+        
     }
 }

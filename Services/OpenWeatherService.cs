@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Forecaster.Models.OpenWeather;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -26,7 +28,7 @@ namespace Forecaster.Services
             _configuration = configuration;
         }
         
-        public async Task<CityWeather> GetLocationWeather(string location, string units="metric")
+        public async Task<Tuple<CityWeather, HttpStatusCode>> GetLocationWeather(string location, string units="metric")
         {
             var requestUri = "/data/2.5/" +
                              "weather?q=" + location +
@@ -34,11 +36,16 @@ namespace Forecaster.Services
                              "&appid=" + _configuration["Api:OpenWeather:ApiKey"];
             
             var response = await _client.GetAsync(requestUri);
-            
-            response.EnsureSuccessStatusCode();
-            
-            using var responseStream = await response.Content.ReadAsStreamAsync();
-            return await JsonSerializer.DeserializeAsync<CityWeather>(responseStream);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    using var responseStream = await response.Content.ReadAsStreamAsync();
+                    return Tuple.Create(await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
+                }
+                else
+                {
+                    return Tuple.Create(new CityWeather(), response.StatusCode);
+                }
         }
     }
 }
