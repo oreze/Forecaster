@@ -1,13 +1,45 @@
 ﻿@using System.Net
+@using Forecaster.Models.Enums
+@using Serilog
 @model Tuple<Forecaster.Models.OpenWeather.CityWeather, System.Net.HttpStatusCode>
 @{
     ViewData["Title"] = "XD";
+}
+@functions
+{
+    public string GetCountry(string country)
+    {
+        Log.Information($"Looking for {0} short name",country);
+        foreach (Countries value in Enum.GetValues(typeof(Countries)))
+        {
+            var foundedShortName = EnumHelper<Countries>.GetShortNameValue(value);
+            if (foundedShortName.Equals(country.ToUpper()))
+            {
+                Log.Information($"Returned {0} for {1}:", 
+                    foundedShortName, 
+                    country, 
+                    EnumHelper<Countries>.GetDisplayValue(value));
+                return EnumHelper<Countries>.GetDisplayValue(value);
+            }
+
+        }
+        return null;
+    }
 }
 
 <div class="text-center">
     @if (Model.Item2 == HttpStatusCode.OK)
     {
-        <p>Temperature: <span style="background-color: gray">@Model.Item1.Main.Temp</span></p>
+        <div id="weather-header">
+            <div class="location">
+                <h1>@Model.Item1.Name</h1>
+                <h3>@GetCountry(Model.Item1.SysData.Country)</h3>
+            </div>
+            <div>
+                
+            </div>
+        </div>
+        <div id="weather-body">asdeasfgsfdgd</div>
     }
     else if (Model.Item2 == HttpStatusCode.NotFound)
     {

@@ -35,8 +35,19 @@ namespace Forecaster.Controllers
             Log.Information("GetWeather object passed to \"weather/index\" method");
             Log.Information("Mode " + weather.Mode);
             Log.Information("Location " + weather.Location);
-            
-            return RedirectToAction("Index", new { Controller = "Weather", Action="Index", location=weather.Location, mode=weather.Mode});
+
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index", new
+                {
+                    Controller = "Weather", Action = "Index",
+                    location = weather.Location, mode = weather.Mode
+                });
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Privacy()

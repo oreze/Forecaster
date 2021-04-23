@@ -1,4 +1,4 @@
-﻿@using Forecaster.Models.OpenWeather
+﻿@using Forecaster.Models.Enums
 @model Forecaster.Models.OpenWeather.GetWeather
 @{
     ViewData["Title"] = "Home Page";
@@ -13,9 +13,15 @@
                 <input id="location" type="text" asp-for="Location" placeholder="your city">
                 <span asp-validation-for="Location" class="text-danger"></span>
             </div>
+            @* <div class="form-group"> *@
+            @*     <label for="mode-select">Choose mode</label> *@
+            @*     <select id="mode-select" class="custom-select" asp-for="Mode" asp-items="Html.GetEnumSelectList<ModeEnum>()"> *@
+            @*     </select> *@
+            @* </div> *@
+
             <div class="form-group">
-                <label for="mode-select">Choose mode</label>
-                <select id="mode-select" class="custom-select" asp-for="Mode" asp-items="Html.GetEnumSelectList<ModeEnum>()">
+                <label for="weather-mode-select">Select weather mode</label>
+                <select class="form-control" id="weather-mode-select" asp-items="@Html.GetEnumSelectList<Modes>()">
                 </select>
             </div>
             <div class="form-group">
