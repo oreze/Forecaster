@@ -9,17 +9,13 @@
 {
     public string GetCountry(string country)
     {
-        Log.Information($"Looking for {0} short name",country);
+        Log.Information("Looking for " + country + " short name");
         foreach (Countries value in Enum.GetValues(typeof(Countries)))
         {
-            var foundedShortName = EnumHelper<Countries>.GetShortNameValue(value);
+            var foundedShortName = value.GetShortNameName();
             if (foundedShortName.Equals(country.ToUpper()))
             {
-                Log.Information($"Returned {0} for {1}:", 
-                    foundedShortName, 
-                    country, 
-                    EnumHelper<Countries>.GetDisplayValue(value));
-                return EnumHelper<Countries>.GetDisplayValue(value);
+                return foundedShortName;
             }
 
         }
