@@ -1,52 +1,52 @@
 ﻿@using System.Net
 @using Forecaster.Models.Enums
+@using Forecaster.Models.OpenWeather.Partial
+@using Forecaster.Services
+@using Forecaster.Utils
 @using Serilog
 @model Tuple<Forecaster.Models.OpenWeather.CityWeather, System.Net.HttpStatusCode>
 @{
     ViewData["Title"] = "XD";
-}
-@functions
-{
-    public string GetCountry(string country)
-    {
-        Log.Information("Looking for " + country + " short name");
-        foreach (Countries value in Enum.GetValues(typeof(Countries)))
-        {
-            var foundedShortName = value.GetShortNameName();
-            if (foundedShortName.Equals(country.ToUpper()))
-            {
-                return foundedShortName;
-            }
-
-        }
-        return null;
-    }
+    var weather = Model.Item1.Weather.First();
 }
 
 <div class="text-center">
-    @if (Model.Item2 == HttpStatusCode.OK)
+    @switch (Model.Item2)
     {
-        <div id="weather-header">
-            <div class="location">
-                <h1>@Model.Item1.Name</h1>
-                <h3>@GetCountry(Model.Item1.SysData.Country)</h3>
+        case HttpStatusCode.OK:
+            <div id="weather-header">
+                <div class="location">
+                    <h1>@Model.Item1.Name</h1>
+                    <p>@Model.Item1.GetCountry()</p>
+                </div>
+                <div id="coordinates">
+                    <p>@Model.Item1.Coordinates.GetCoordsDirections(true)</p>
+                    <p>@Model.Item1.Coordinates.GetCoordsDirections(false)</p>
+                </div>
             </div>
-            <div>
-                
+            <div id="weather-body">
+                <div>
+                    <div>
+                        <img src="@Model.Item1.GetIconSourceUri(true)", alt="@weather?.Description">
+                        <p>@weather.Description.Capitalize()</p>
+                    </div>
+                    <div>
+                        <p>@Model.Item1.GetFormattedTemperature()</p>
+                        <p>@Model.Item1.GetFormattedFeelsLikeTemperature()</p>
+                    </div>
+                    <div>
+                        <p>min. @Model.Item1.GetFormattedMinTemperature()</p>
+                        <p>max. @Model.Item1.GetFormattedMaxTemperature()</p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="weather-body">asdeasfgsfdgd</div>
-    }
-    else if (Model.Item2 == HttpStatusCode.NotFound)
-    {
-        <p>This location doesn`t exist</p>
-    }
-    else
-    {
-        <p>Something went wrong. Try again.</p>
+            break;
+        case HttpStatusCode.NotFound:
+            <p>This location doesn`t exist</p>
+            break;
+        default:
+            <p>Something went wrong. Try again.</p>
+            break;
     }
 
-    
-    
-            
 </div>
