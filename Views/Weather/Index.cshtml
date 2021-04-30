@@ -4,14 +4,14 @@
 @using Forecaster.Services
 @using Forecaster.Utils
 @using Serilog
-@model Tuple<Forecaster.Models.OpenWeather.CityWeather, System.Net.HttpStatusCode>
+@model (Forecaster.Models.OpenWeather.CityWeather CurrentWeather, System.Net.HttpStatusCode Code)
 @{
     ViewData["Title"] = "XD";
     var weather = Model.Item1.Weather.First();
 }
 
 <div class="text-center">
-    @switch (Model.Item2)
+    @switch(Model.Code)
     {
         case HttpStatusCode.OK:
             <div id="weather-header">

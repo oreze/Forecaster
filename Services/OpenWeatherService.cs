@@ -28,7 +28,7 @@ namespace Forecaster.Services
             _configuration = configuration;
         }
         
-        public async Task<Tuple<CityWeather, HttpStatusCode>> GetLocationWeather(string location, string units="metric")
+        public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location, string units="metric")
         {
             var requestUri = "/data/2.5/" +
                              "weather?q=" + location +
@@ -40,11 +40,11 @@ namespace Forecaster.Services
                 if (response.IsSuccessStatusCode)
                 {
                     using var responseStream = await response.Content.ReadAsStreamAsync();
-                    return Tuple.Create(await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
+                    return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
                 }
                 else
                 {
-                    return Tuple.Create(new CityWeather(), response.StatusCode);
+                    return (new CityWeather(), response.StatusCode);
                 }
         }
     }
