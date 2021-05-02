@@ -7,36 +7,97 @@
 @model (Forecaster.Models.OpenWeather.CityWeather CurrentWeather, System.Net.HttpStatusCode Code)
 @{
     ViewData["Title"] = "XD";
-    var weather = Model.Item1.Weather.First();
+    var weather = Model.CurrentWeather.Weather.First();
 }
 
 <div class="text-center">
-    @switch(Model.Code)
+    @switch (Model.Code)
     {
         case HttpStatusCode.OK:
-            <div id="weather-header">
-                <div class="location">
-                    <h1>@Model.Item1.Name</h1>
-                    <p>@Model.Item1.GetCountry()</p>
+            <div id="weather-header" class="flex-row">
+                <div id="location">
+                    <h1>@Model.CurrentWeather.Name</h1>
+                    <p>@Model.CurrentWeather.GetCountry()</p>
                 </div>
                 <div id="coordinates">
-                    <p>@Model.Item1.Coordinates.GetCoordsDirections(true)</p>
-                    <p>@Model.Item1.Coordinates.GetCoordsDirections(false)</p>
+                    <p>@Model.CurrentWeather.GetCoordsDirections(GeoCoordinate.Longitude)</p>
+                    <p>@Model.CurrentWeather.GetCoordsDirections(GeoCoordinate.Latitude)</p>
                 </div>
             </div>
-            <div id="weather-body">
-                <div>
+            <div id="weather-body" class="flex-column">
+                <div id="weather-main">
                     <div>
-                        <img src="@Model.Item1.GetIconSourceUri(true)", alt="@weather?.Description">
+                        <img src="@Model.CurrentWeather.GetIconSourceUri(true)", alt="@weather?.Description">
                         <p>@weather.Description.Capitalize()</p>
                     </div>
                     <div>
-                        <p>@Model.Item1.GetFormattedTemperature()</p>
-                        <p>@Model.Item1.GetFormattedFeelsLikeTemperature()</p>
+                        <p>
+                            @Model.CurrentWeather.GetFormattedTemperature()
+                            <span>°C</span>
+                        </p>
+                        <p>
+                            <span>Feels like </span>
+                            @Model.CurrentWeather.GetFormattedFeelsLikeTemperature()
+                            <span>°C</span>
+                        </p>
                     </div>
                     <div>
-                        <p>min. @Model.Item1.GetFormattedMinTemperature()</p>
-                        <p>max. @Model.Item1.GetFormattedMaxTemperature()</p>
+                        <p>
+                            <span>min.</span> @Model.CurrentWeather.GetFormattedMinTemperature()
+                            <span>°C</span>
+                        </p>
+                        <p>
+                            <span>max.</span> @Model.CurrentWeather.GetFormattedMaxTemperature()
+                            <span>°C</span>
+                        </p>
+                    </div>
+                </div>
+                <div id="weather-additional">
+                    <div>
+                        <div>
+                            <p>Pressure</p>
+                            <p>@Model.CurrentWeather.Main.Pressure</p>
+                        </div>
+                        <div>
+                            <p>Humidity</p>
+                            <p>
+                                @Model.CurrentWeather.Main.Humidity
+                                <span>%</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p>Wind</p>
+                            <div>
+                                <p>
+                                    @Model.CurrentWeather.GetRoundedWind()
+                                    <span>km/h</span>
+                                </p>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div>
+                            <p>Cloudy</p>
+                            <p>
+                                @Model.CurrentWeather.Clouds.All
+                                <span>%</span>
+                            </p>
+                        </div>
+                        <div>
+                            <p>Visibility</p>
+                            <p>@Model.CurrentWeather.GetVisibility()</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div>
+                                <p>Sunrise</p>
+                                <p>@Model.CurrentWeather.GetSunriseTime()</p>
+                            </div>
+                            <div>
+                                <p>Sunset</p>
+                                <p>@Model.CurrentWeather.GetSunsetTime()</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,5 +109,4 @@
             <p>Something went wrong. Try again.</p>
             break;
     }
-
 </div>
