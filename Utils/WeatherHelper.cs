@@ -52,11 +52,16 @@ namespace Forecaster.Services
             return null;
         }
 
-        public static string GetIconSourceUri(this CityWeather weather, bool doubleSized)
+        public static string GetIconSourceUri(this CityWeather weather, IconSize size)
         {
             string Uri = "http://openweathermap.org/img/wn/" + weather.Weather.First()?.Icon;
-            if (doubleSized)
-                Uri += "@2x";
+            Uri += size switch
+            {
+                IconSize.One => "",
+                IconSize.Two => "@2x",
+                IconSize.Four => "@4x",
+                _ => ""
+            };
             Uri += ".png";
             return Uri;
         }

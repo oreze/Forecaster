@@ -116,6 +116,10 @@ html {
   font-size: var(--font-size-basic);
 }
 
+p {
+  margin: 0;
+}
+
 input[type="text"] {
   box-sizing: content-box;
   border: 2px solid var(--input-border-color);
@@ -131,6 +135,23 @@ input[type="text"]:hover {
 input[type="text"]:focus {
   border-color: var(--input-border-color-active);
   background-color: var(--input-background-color-hover);
+}
+
+.centered {
+  align-items: baseline;
+}
+
+.line-divide {
+  flex-basis: 25%;
+  border-bottom: 1px solid black;
+  margin: 5px;
+}
+
+.description {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #location-input-form div {
@@ -164,8 +185,36 @@ input[type="text"]:focus {
   width: 10rem;
 }
 
-#weather-header, #weather-body {
+#weather-header, 
+#weather-body {
   display: flex;
   justify-content: center;
 }
 
+#weather-header *, 
+#weather-body * {
+  justify-content: center;
+}
+
+#weather-body > div:not(div:first-child){
+  margin-top: 2rem;
+}
+
+#daytime-data, #daytime-data.item {
+  align-items: center;
+}
+
+#weather-icon {
+  position: relative;
+}
+
+#coordinates {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-left: 5rem;
+}
+
+#location > h1 {
+  font-size: 5rem;
+}

@@ -24,11 +24,11 @@
                     <p>@Model.CurrentWeather.GetCoordsDirections(GeoCoordinate.Latitude)</p>
                 </div>
             </div>
-            <div id="weather-body" class="flex-column">
-                <div id="weather-main">
-                    <div>
-                        <img src="@Model.CurrentWeather.GetIconSourceUri(true)", alt="@weather?.Description">
-                        <p>@weather.Description.Capitalize()</p>
+            <div id="weather-body" class="flex-column border-top">
+                <div id="weather-main" class="d-flex flex-row centered">
+                    <div id="weather-icon">
+                        <img src="@Model.CurrentWeather.GetIconSourceUri(IconSize.Four)", alt="@weather?.Description">
+                        <p class="description">@weather.Description.Capitalize()</p>
                     </div>
                     <div>
                         <p>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div id="weather-additional">
-                    <div>
+                    <div class="d-flex flex-row">
                         <div>
                             <p>Pressure</p>
                             <p>@Model.CurrentWeather.Main.Pressure</p>
@@ -87,16 +87,15 @@
                             <p>@Model.CurrentWeather.GetVisibility()</p>
                         </div>
                     </div>
-                    <div>
-                        <div>
-                            <div>
-                                <p>Sunrise</p>
-                                <p>@Model.CurrentWeather.GetSunriseTime()</p>
-                            </div>
-                            <div>
-                                <p>Sunset</p>
-                                <p>@Model.CurrentWeather.GetSunsetTime()</p>
-                            </div>
+                    <div id="daytime-data" class="d-flex flex-row">
+                        <div class="item">
+                            <p>Sunrise</p>
+                            <p>@Model.CurrentWeather.GetSunriseTime()</p>
+                        </div>
+                        <div class="line-divide"></div>
+                        <div class="item">
+                            <p>Sunset</p>
+                            <p>@Model.CurrentWeather.GetSunsetTime()</p>
                         </div>
                     </div>
                 </div>
