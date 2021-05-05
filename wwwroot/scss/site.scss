@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -83,12 +86,6 @@ body {
   --------------------------------------------------
   -------------------------------------------------- */
 
-:root {
-    --font-size-basic: 18px;
-    --input-border-color: rgb(69, 174, 255);
-    --input-background-color-hover: rgb(214, 228, 255);
-    --input-border-color-active: rgb(76, 114, 176);
-}
 
 @media screen and (max-width: 576px) {
     #home-logo {
@@ -123,19 +120,19 @@ p {
 
 input[type="text"] {
     box-sizing: content-box;
-    border: 2px solid var(--input-border-color);
+    border: 2px solid $input-border-color;
     border-radius: 10px;
     outline: none;
     transition: .25s ease;
 }
 
 input[type="text"]:hover {
-    background-color: var(--input-background-color-hover);
+    background-color: $input-background-color-hover;
 }
 
 input[type="text"]:focus {
-    border-color: var(--input-border-color-active);
-    background-color: var(--input-background-color-hover);
+    border-color: $input-border-color-active;
+    background-color: $input-background-color-hover;
 }
 
 .centered {
@@ -155,7 +152,8 @@ input[type="text"]:focus {
     left: 50%;
     transform: translateX(-50%);
     font-weight: 500;
-    background-color: rgba(177, 230, 255, 0.5);
+    //background-color: rgba(177, 230, 255, 0.5);
+    background-color: rgba(0, 0, 255, 0.2);
     border-radius: 1rem;
     padding: .25rem .25rem;
     z-index: 1;
