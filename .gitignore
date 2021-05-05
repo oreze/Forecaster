@@ -444,3 +444,6 @@ $RECYCLE.BIN/
 # User local settings
 appsettings.*.json
 appsettings.json
+/wwwroot/dist/bundle.css
+/wwwroot/dist/bundle.js
+
