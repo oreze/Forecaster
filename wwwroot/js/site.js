@@ -1,4 +1,26 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿const menuButton = document.querySelector('.menu-btn');
+const navigation = document.querySelector('nav');
+const menuNav = document.querySelector('.nav-list')
+const navItems = document.querySelectorAll('.nav-list__item');
+let menuOpened = false;
 
-// Write your JavaScript code.
+const toggleMenu = () => {
+    if (!menuOpened) {
+        menuButton.classList.add('open');
+        navigation.classList.add('open');
+        menuNav.classList.add('open');
+        navItems.forEach(x => x.classList.add('open'));
+        
+        menuOpened = true;
+    } else {
+        menuButton.classList.remove('open');
+        navigation.classList.remove('open');
+        menuNav.classList.remove('open');
+        navItems.forEach(x => x.classList.remove('open'));
+
+
+        menuOpened = false;
+    }
+}
+
+menuButton.addEventListener('click', toggleMenu);

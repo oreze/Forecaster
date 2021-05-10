@@ -8,7 +8,7 @@ const dirName = 'wwwroot/dist';
 module.exports = (env, argv) => {
     return {
         mode: argv.mode === "production" ? "production" : "development",
-        entry: ['./node_modules/bootstrap/dist/js/bootstrap.bundle.js', './wwwroot/js/site.js', './wwwroot/scss/site.scss'],
+        entry: ['./node_modules/bootstrap/dist/js/bootstrap.bundle.js', './wwwroot/js/site.js', './wwwroot/scss/main.scss'],
         output: {
             filename: bundleFileName + '.js',
             path: path.resolve(__dirname, dirName)

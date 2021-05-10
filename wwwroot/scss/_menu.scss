@@ -1,0 +1,120 @@
+﻿@mixin burger-span-basic {
+  position: absolute;
+  right: 0;
+  height: 4px;
+  background-color: getFontColor($primary-color);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0;
+  visibility: hidden;
+  opacity: 0.98;
+  @include transition-ease;
+  
+  &.open {
+    visibility: visible;
+    height: 100vh;
+  }
+  
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background: $primary-color;
+    list-style-type: none;
+    padding-right: 1rem;
+    @include transform(translateY(-100%));
+    @include transition-ease;
+    
+    &.open {
+      transform: translateY(0);
+    }
+    
+    &__item {
+      @include transform(translateX(100vw));
+      @include transition-ease;
+      transition-delay: .5s;
+      
+      &.open {
+        @include transform(translateX(0));
+      }
+      
+      &.active > a {
+        color: $secondary-color
+      }
+    }
+    
+    &__link {
+      display: inline-block;
+      font-size: 2rem;
+      text-transform: uppercase;
+      padding: 2rem 0;
+      @include transition-ease;
+      
+      &:hover {
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+.menu-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 1;
+  height: 20px;
+  width: 40px;
+  margin: 10px;
+  transition: width .5s ease-in-out;
+
+  &__burger {
+    @include burger-span-basic;
+    top: .5rem;
+    width: 100%;
+    @include transition-ease;
+
+    &::before {
+      content: '';
+      @include burger-span-basic;
+      bottom: .5rem;
+      width: 100%;
+      @include transition-ease
+    }
+
+    &::after {
+      content: '';
+      @include burger-span-basic;
+      top: .5rem;
+      width: 75%;
+      @include transition-ease;
+    }
+  }
+  
+  &.open {
+    width: 5rem;
+    
+    .menu-btn__burger {
+      background-color: white;
+      
+      &::before {
+        background-color: #fff;
+      }
+      &::after {
+        background-color: #fff;
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+

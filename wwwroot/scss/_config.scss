@@ -1,0 +1,47 @@
+﻿$background-color: #fff;
+$primary-color: rgb(69, 174, 255);
+$secondary-color: orange;
+$input-border-color: rgb(69, 174, 255);
+$font-size-basic: 18px;
+$input-background-color-hover: rgb(214, 228, 255);
+$input-border-color-active: rgb(76, 114, 176);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@function getFontColor($primary-color) {
+  @if (lightness($primary-color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+@mixin transform($property) {
+  -ms-transform: $property;
+  -webkit-transform: $property;
+  transform: $property;
+}
+
+@mixin transition-ease {
+  transition: all .5s ease-in-out;
+}
+
+@mixin media-md {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin media-lg {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}

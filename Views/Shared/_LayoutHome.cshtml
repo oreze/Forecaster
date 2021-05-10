@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -6,14 +9,46 @@
     <title>@ViewData["Title"] - Forecaster</title>
     <link rel="stylesheet" href="~/dist/bundle.css" asp-append-version="true"/>
 </head>
-<body class="d-flex align-items-center justify-content-center">
-    <div class="container">
-        <main role="main">
-            @RenderBody()
-        </main>
-    </div>
+<body>
+    <header>
+        <div class="menu-btn">
+            <span class="menu-btn__burger"></span>
+        </div>
+
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-list__item">
+                    <a href="" class="nav-list__link">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-list__item">
+                    <a href="" class="nav-list__link">
+                        About
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main role="main">
+        @RenderBody()
+    </main>
+    <footer>
+        <div class="social-icons">
+            <a href="@Configuration["Social:Linkedin"]">
+                <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+            <a href="@Configuration["Social:Github"]">
+                <i class="fab fa-github fa-2x"></i>
+            </a>
+            <a href=@Configuration["Social:Discord"]>
+                <i class="fab fa-discord fa-2x"></i>
+            </a>
+        </div>
+    </footer>
 
     <script src="~/dist/bundle.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/5256d7606a.js" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
