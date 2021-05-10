@@ -48,6 +48,12 @@
       <Watch Include="**\*.js;**\*.scss;**\*.css" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update=".dockerignore">
+        <DependentUpon>Dockerfile</DependentUpon>
+      </None>
+    </ItemGroup>
+
     <Target Name="Create bundles" BeforeTargets="BeforeBuild">
       <Exec Command="npm run build" />
     </Target>

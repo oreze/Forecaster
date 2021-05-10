@@ -5,8 +5,10 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Forecaster.Models.OpenWeather;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
@@ -16,16 +18,19 @@ namespace Forecaster.Services
     {
         private HttpClient _client { get; }
         private IConfiguration _configuration { get; set; }
+        private readonly IWebHostEnvironment _env;
         
 
         public OpenWeatherService(HttpClient client,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWebHostEnvironment env)
         {
             client.BaseAddress = new Uri("http://api.openweathermap.org");
             client.DefaultRequestHeaders.Add("User-Agent", "Asp.Net-Forecaster");
 
             _client = client;
             _configuration = configuration;
+            _env = env;
         }
         
         public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location, string units="metric")
@@ -33,7 +38,7 @@ namespace Forecaster.Services
             var requestUri = "/data/2.5/" +
                              "weather?q=" + location +
                              "&units=" + units +
-                             "&appid=" + _configuration["Api:OpenWeather:ApiKey"];
+                             "&appid=" + GetApiKey();
             
             var response = await _client.GetAsync(requestUri);
 
@@ -46,6 +51,15 @@ namespace Forecaster.Services
                 {
                     return (new CityWeather(), response.StatusCode);
                 }
+        }
+
+        private string GetApiKey()
+        {
+            if (_env.IsDevelopment())
+                return _configuration["Api:OpenWeather:ApiKey"];
+            else
+                return Environment.GetEnvironmentVariable("OPENWEATHERAPIKEY");
+
         }
     }
 }
