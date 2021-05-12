@@ -1,10 +1,12 @@
 ﻿$background-color: #fff;
-$primary-color: rgb(69, 174, 255);
-$secondary-color: orange;
+$primary-color: #FF7513;
+$secondary-color: #FF8B38;
 $input-border-color: rgb(69, 174, 255);
 $font-size-basic: 18px;
 $input-background-color-hover: rgb(214, 228, 255);
 $input-border-color-active: rgb(76, 114, 176);
+
+$header-max-height: 10vh;
 
 * {
   box-sizing: border-box;
@@ -12,8 +14,8 @@ $input-border-color-active: rgb(76, 114, 176);
   padding: 0;
 }
 
-@function getFontColor($primary-color) {
-  @if (lightness($primary-color) > 40%) {
+@function getFontColor($color) {
+  @if (lightness($color) > 40%) {
     @return #000;
   } @else {
     @return #fff;
@@ -26,8 +28,20 @@ $input-border-color-active: rgb(76, 114, 176);
   transform: $property;
 }
 
-@mixin transition-ease {
+@mixin transition-easy-longest {
+  transition: all 1s ease-in-out;
+}
+@mixin transition-easy-long {
+  transition: all .75s ease-in-out;
+}
+@mixin transition-easy-normal {
   transition: all .5s ease-in-out;
+}
+@mixin transition-easy-fast {
+  transition: all .25s ease-in-out;
+}
+@mixin transition-easy-fastest {
+  transition: all .15s ease-in-out;
 }
 
 @mixin media-md {
