@@ -4,29 +4,50 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 id="home-logo" class="display-1">ForeCaster</h1>
-    <div class="pt-2 d-flex flex-column">
-        <form id="location-input-form" asp-controller="Home" asp-action="Index" method="post">
-            <div class="form-group">
-                <label for="location">Enter your location</label>
-                <input id="location" type="text" asp-for="Location" placeholder="your city">
-                <span asp-validation-for="Location" class="text-danger"></span>
-            </div>
-            @* <div class="form-group"> *@
-            @*     <label for="mode-select">Choose mode</label> *@
-            @*     <select id="mode-select" class="custom-select" asp-for="Mode" asp-items="Html.GetEnumSelectList<ModeEnum>()"> *@
-            @*     </select> *@
-            @* </div> *@
-
-            <div class="form-group">
-                <label for="weather-mode-select">Select weather mode</label>
-                <select class="form-control" id="weather-mode-select" asp-items="@Html.GetEnumSelectList<Modes>()">
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Index" class="btn btn-primary" />
-            </div>
-        </form>
+<form id="location-input-form" asp-controller="Home" asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="location">Enter your location</label>
+        <input id="location" class="form-control" type="text" asp-for="Location" placeholder="your city...">
+        <span asp-validation-for="Location" class="text-danger"></span>
     </div>
-</div>
+    <div class="form-group">
+        @* <label for="weather-mode">Select weather mode</label> *@
+        @* <select id="weather-mode" class="form-control" id="weather-mode-select" asp-items="@Html.GetEnumSelectList<Modes>()"> *@
+        @* </select> *@
+
+        <div class="select-box">
+            <div class="select-box__current">
+                @foreach (var item in Html.GetEnumSelectList<Modes>())
+                {
+                    @if (item.Value == "0")
+                    {
+                        <div class="select-box__value">
+                            <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text" checked/>
+                            <p class="select-box__input-text">@item.Text</p>
+                        </div> 
+                    }
+                    else
+                    {
+                        <div class="select-box__value">
+                            <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text"/>
+                            <p class="select-box__input-text">@item.Text</p>
+                        </div> 
+                    }
+                }
+                <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true"/>
+            </div>
+            <ul class="select-box__list">
+                @foreach (var item in Html.GetEnumSelectList<Modes>())
+                {
+                    <li>
+                        <label class="select-box__option" for="@item.Value" aria-hidden="aria-hidden">@item.Text</label>
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Index" class="btn btn-primary"/>
+    </div>
+</form>

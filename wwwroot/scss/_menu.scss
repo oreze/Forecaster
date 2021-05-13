@@ -18,7 +18,7 @@ header {
   background-color: $primary-color;
   z-index: 10;
   box-shadow: 0 0 3px black;
-  
+
   .menu {
     display: flex;
     align-items: baseline;
@@ -27,7 +27,7 @@ header {
     width: 100%;
     padding: 0 2rem;
   }
-  
+
   nav {
     visibility: hidden;
     position: fixed;
@@ -168,19 +168,144 @@ footer {
   .copyright {
     font-size: .75rem;
     position: fixed;
-    bottom: 1rem;
-    right: .5rem;
+    bottom: .5rem;
+    right: .25rem;
     display: flex;
     flex-direction: column;
     @include transform(rotate(90deg) translate(-2em, -2.5em));
     //  Hack to remove blur from Google Chrome
-    -webkit-transform-origin: 50%  51%;
-    
-   
+    -webkit-transform-origin: 50% 51%;
   }
 }
 
 
+// Custom dropdown menu - taken from https://codepen.io/miniven/pen/ZJydge
+
+.select-box {
+  position: relative;
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+  color: #60666d;
+
+  &.open {
+    .select-box__current {
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+
+    .select-box__list {
+      max-height: 200px;
+      overflow: auto;
+      opacity: 1;
+      // We have to set "animation-name: none;" to make the list visible (read below how it works)
+      animation-name: none;
+
+      .select-box__option {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__current {
+    position: relative;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    cursor: pointer;
+    outline: none;
+
+    & + .select-box__list {
+      margin-top: 4px;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+  }
+
+  &__value {
+    display: flex;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .select-box__input-text {
+      display: block;
+    }
+  }
+
+  &__input-text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: .5rem .5rem;
+    background-color: #fff;
+    border: 2px solid $tertiary-color;
+    border-radius: 10px;
+  }
+
+  &__list {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+
+    // We need to use animation with delay.
+    // Otherwise the click event will not have time to run on label, because this element disapears immediately when .select-box__current element loses the focus.
+    // This delay will not be noticed because we set "opacity" to "0".
+    // We also use "animation-fill-mode: forwards" to make the list stay hidden.
+
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+
+    > li {
+      border: 1px solid lightgray;
+
+      label {
+        @include transition-easy-fastest;
+        &:hover {
+          background-color: $tertiary-color;
+        }
+      }
+      &:first-child {
+        border-radius: 10px 10px 0 0;
+      }
+    }
+  }
+
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: #fff;
+
+    &:hover,
+    &:focus {
+      color: #546c84;
+      background-color: #fbfbfb;
+    }
+  }
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
 
 
 

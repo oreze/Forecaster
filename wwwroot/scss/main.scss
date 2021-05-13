@@ -17,16 +17,13 @@ html {
 }
 
 body {
+  @include flexCenter;
   min-height: 100vh;
   width: 100vw;
   padding-top: 5rem;
   font-family: "Segoe UI", Helvetica, Arial, sans-serif;
   background-color: $background-color;
   color: getFontColor($background-color);
-}
-
-a {
-  text-decoration: none;
 }
 
 ul {
@@ -47,6 +44,26 @@ input {
   &:focus {
     border-color: $input-border-color-active;
     background-color: $input-background-color-hover;
+  }
+  
+}
+
+#weather-mode {
+  text-align: center;
+  text-align-last: center;
+  
+  > option {
+    text-align: left;
+  }
+}
+
+#location-input-form {
+  @include flexCenter;
+  flex-direction: column;
+  
+  .form-group {
+    @include flexCenter;
+    flex-direction: column;
   }
 }
 
@@ -71,34 +88,4 @@ input {
   border-radius: 1rem;
   padding: .25rem .25rem;
   z-index: 1;
-}
-
-.weather-icon {
-  position: relative;
-}
-
-.weather-list {
-  list-style-type: none;
-}
-
-.weather-item {
-  display: flex;
-  flex-direction: column;
-  margin: 0 .25rem;
-}
-
-#weather-body,
-.weather-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#weather-header > div,
-weather-body {
-  flex-direction: column;
-}
-
-#weather-header {
-  flex-direction: row;
 }

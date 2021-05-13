@@ -44,12 +44,12 @@ App made as "proof of concept" before something more serious. Based on openweath
    ```git clone https://github.com/oreze/Forecaster.git```
 2. **OPTIONAL** checkout to development branch\
    ```git checkout development```
-3. Run NPM install all dependencies
+3. Run NPM install all dependencies\
    ```npm install```
 4. Install all packages from NuGet\
    [Current list of used packages](#nuget-packages)
 5. Add OpenWeather api key to dotnet secrets as "Api:OpenWeather:ApiKey"
-6. Use this command to run
+6. Use this command to run\
    ```dotnet run```
 
 ### Future plans

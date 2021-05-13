@@ -1,6 +1,7 @@
 ﻿$background-color: #fff;
 $primary-color: #FF7513;
 $secondary-color: #FF8B38;
+$tertiary-color: #FFA96C;
 $input-border-color: rgb(69, 174, 255);
 $font-size-basic: 18px;
 $input-background-color-hover: rgb(214, 228, 255);
@@ -12,6 +13,10 @@ $header-max-height: 10vh;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 @function getFontColor($color) {
@@ -31,15 +36,19 @@ $header-max-height: 10vh;
 @mixin transition-easy-longest {
   transition: all 1s ease-in-out;
 }
+
 @mixin transition-easy-long {
   transition: all .75s ease-in-out;
 }
+
 @mixin transition-easy-normal {
   transition: all .5s ease-in-out;
 }
+
 @mixin transition-easy-fast {
   transition: all .25s ease-in-out;
 }
+
 @mixin transition-easy-fastest {
   transition: all .15s ease-in-out;
 }
@@ -49,11 +58,13 @@ $header-max-height: 10vh;
     @content;
   }
 }
+
 @mixin media-lg {
   @media screen and (min-width: 1024px) {
     @content;
   }
 }
+
 @mixin media-xl {
   @media screen and (min-width: 1600px) {
     @content;
