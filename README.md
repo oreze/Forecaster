@@ -53,7 +53,7 @@ App made as "proof of concept" before something more serious. Based on openweath
    ```dotnet run```
 
 ### Future plans
-To be honest, i have no special plans at the moment. I want to finish basic feature (checking current weather), add long term forecast, add some geolocation, maybe use to PostgreSQL to store statistic data about weather (Entity Framework Core). If i would had some idea i\`ll place it here.
+To be honest, i have no special plans at the moment. I want to finish basic feature (checking current weather), write some tests, add long term forecast, add some geolocation, maybe use PostgreSQL to store statistic data about weather (Entity Framework Core). If i would had some idea i\`ll place it here.
 
 ---
 **Feel free to contact me if you have any questions, ideas or concerns about project/documentation.**
