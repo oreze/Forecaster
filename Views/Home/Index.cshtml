@@ -11,28 +11,37 @@
         <span asp-validation-for="Location" class="text-danger"></span>
     </div>
     <div class="form-group">
-        @* <label for="weather-mode">Select weather mode</label> *@
-        @* <select id="weather-mode" class="form-control" id="weather-mode-select" asp-items="@Html.GetEnumSelectList<Modes>()"> *@
-        @* </select> *@
-
+        <label>Weather mode:</label>
         <div class="select-box">
             <div class="select-box__current">
                 @foreach (var item in Html.GetEnumSelectList<Modes>())
                 {
-                    @if (item.Value == "0")
-                    {
-                        <div class="select-box__value">
+                    <div class="select-box__value">
+                        @if (item.Value == "0")
+                        {
                             <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text" checked/>
-                            <p class="select-box__input-text">@item.Text</p>
-                        </div> 
-                    }
-                    else
-                    {
-                        <div class="select-box__value">
+                        }
+                        else
+                        {
                             <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text"/>
-                            <p class="select-box__input-text">@item.Text</p>
-                        </div> 
-                    }
+                        }
+                        <p class="select-box__input-text">@item.Text</p>
+                    </div>
+
+                    @* @if (item.Value == "0") *@
+                    @* { *@
+                    @*     <div class="select-box__value"> *@
+                    @*         <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text" checked/> *@
+                    @*         <p class="select-box__input-text">@item.Text</p> *@
+                    @*     </div>  *@
+                    @* } *@
+                    @* else *@
+                    @* { *@
+                    @*     <div class="select-box__value"> *@
+                    @*         <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text"/> *@
+                    @*         <p class="select-box__input-text">@item.Text</p> *@
+                    @*     </div>  *@
+                    @* } *@
                 }
                 <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true"/>
             </div>

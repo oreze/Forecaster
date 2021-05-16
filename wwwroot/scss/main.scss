@@ -12,10 +12,6 @@ for details on configuring this project to bundle and minify static web assets. 
   align-items: center;
 }
 
-html {
-  font-size: 16px;
-}
-
 body {
   @include flexCenter;
   min-height: 100vh;
@@ -64,6 +60,10 @@ input {
   .form-group {
     @include flexCenter;
     flex-direction: column;
+    
+    & + .form-group {
+      margin-top: 1rem;
+    }
   }
 }
 

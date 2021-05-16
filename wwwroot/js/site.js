@@ -18,7 +18,7 @@ const toggleSelect = (x) => {
 // Remove current checked attribute and set it to new checked item
 const chooseOption = (element, selectBox) => {
     const optionID = element.firstElementChild.getAttribute('for');
-    const inputs = selectBox.firstElementChild.getElementsByTagName('input');
+    const inputs = selectBox.getElementsByTagName('input');
     const inputList = Array.prototype.slice.call(inputs);
     
     // Replace current input with new
@@ -48,4 +48,4 @@ const toggleMenu = () => {
 
 menuButton.addEventListener('click', toggleMenu);
 selectList.forEach(x => x.addEventListener('click', toggleSelect.bind(null, x)));
-selectOptionLabelsList.forEach(x => x.addEventListener('click', chooseOption.bind(null, x, x.parentNode.parentNode.parentNode)))
+selectOptionLabelsList.forEach(x => x.addEventListener('click', chooseOption.bind(null, x, x.parentNode.parentNode)))
