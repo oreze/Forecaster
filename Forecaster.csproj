@@ -54,10 +54,6 @@
       </None>
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="wwwroot\img" />
-    </ItemGroup>
-
     <Target Name="Create bundles" BeforeTargets="BeforeBuild">
       <Exec Command="npm run build" />
     </Target>

@@ -45,7 +45,7 @@ namespace Forecaster.Services
             Log.Information("Looking for " + weather.SysData.Country + " short name");
             foreach (Countries value in Enum.GetValues(typeof(Countries)))
             {
-                var FoundedShortName = value.GetShortNameName();
+                var FoundedShortName = value.GetShortName();
                 if (FoundedShortName.Equals(weather.SysData.Country.ToUpper()))
                     return value.GetDisplayName();
             }
@@ -94,14 +94,14 @@ namespace Forecaster.Services
         public static string GetWindDirection(this CityWeather weather) =>
             weather.Wind.Degrees switch
             {
-                float x when x >= 337.5 || x < 22.5 => "Northern",
-                float x when x >= 22.5 || x < 67.5 => "Northern east",
-                float x when x >= 22.5 || x < 67.5 => "East",
-                float x when x >= 22.5 || x < 67.5 => "Southern east",
-                float x when x >= 22.5 || x < 67.5 => "South",
-                float x when x >= 22.5 || x < 67.5 => "Southern west",
-                float x when x >= 22.5 || x < 67.5 => "West",
-                float x when x >= 22.5 || x < 67.5 => "Northern west",
+                float x when x >= 337.5 || x < 22.5 => Arrows.North.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.NorthEast.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.East.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.SouthEast.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.South.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.SouthWest.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.West.GetShortName(),
+                float x when x >= 22.5 || x < 67.5 => Arrows.NorthWest.GetShortName(),
                 _ => throw new NullReferenceException($"{nameof(weather)} has no attribute {nameof(weather.Wind.Degrees)}.")
             };
 

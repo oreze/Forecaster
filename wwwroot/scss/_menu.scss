@@ -26,6 +26,10 @@ header {
     flex-direction: row;
     width: 100%;
     padding: 0 2rem;
+    
+    &-logo {
+      margin: 0;
+    }
   }
 
   nav {
@@ -60,7 +64,7 @@ header {
       }
 
       &__item {
-        @include transform(translateX(100vw));
+        @include transform(translateX(-100vw));
         @include transition-easy-normal;
 
         &.open {

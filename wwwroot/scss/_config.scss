@@ -9,26 +9,10 @@ $input-border-color-active: rgb(76, 114, 176);
 
 $header-max-height: 10vh;
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-}
-
-@function getFontColor($color) {
-  @if (lightness($color) > 40%) {
-    @return #000;
-  } @else {
-    @return #fff;
-  }
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @mixin transform($property) {
@@ -74,3 +58,57 @@ a {
     @content;
   }
 }
+
+html {
+  font-size: 18px;
+}
+
+body {
+  @include flexCenter;
+  min-height: 100vh;
+  width: 100vw;
+  padding-top: 5rem;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: $background-color;
+  color: getFontColor($background-color);
+}
+
+main {
+  width: 100vw;
+}
+
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  box-sizing: content-box;
+  border: 2px solid $input-border-color;
+  border-radius: 10px;
+  outline: none;
+  transition: .25s ease;
+
+  &:hover {
+    background-color: $input-background-color-hover;
+  }
+
+  &:focus {
+    border-color: $input-border-color-active;
+    background-color: $input-background-color-hover;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+@function getFontColor($color) {
+  @if (lightness($color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+

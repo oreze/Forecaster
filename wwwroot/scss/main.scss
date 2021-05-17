@@ -6,44 +6,6 @@ for details on configuring this project to bundle and minify static web assets. 
 @import "menu";
 @import '~bootstrap/scss/bootstrap';
 
-@mixin flexCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-body {
-  @include flexCenter;
-  min-height: 100vh;
-  width: 100vw;
-  padding-top: 5rem;
-  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-  background-color: $background-color;
-  color: getFontColor($background-color);
-}
-
-ul {
-  list-style-type: none;
-}
-
-input {
-  box-sizing: content-box;
-  border: 2px solid $input-border-color;
-  border-radius: 10px;
-  outline: none;
-  transition: .25s ease;
-
-  &:hover {
-    background-color: $input-background-color-hover;
-  }
-
-  &:focus {
-    border-color: $input-border-color-active;
-    background-color: $input-background-color-hover;
-  }
-  
-}
-
 #weather-mode {
   text-align: center;
   text-align-last: center;
@@ -67,25 +29,119 @@ input {
   }
 }
 
+.weather {
+  @include flexCenter;
+  flex-direction: column;
+  text-align: center;
+  
+  &-header {
+    //border-bottom: 1px solid $secondary-color;
+    
+    &-list {
+      @include flexCenter;
+      flex-direction: column;
+      padding: 1rem 2rem;
+      background-color: $secondary-color;
+      margin-bottom: 0;
+      
+      .weather-item {
+        @include flexCenter;
+        flex-direction: column;
+        
+        &.coordinates {
+          flex-direction: row;
+          
+          p + p {   // margin between cords
+            margin-left: 1.5rem;
+          }
+        }
+      }
+    }
+    
+    
+    h1 {
+      margin: 0;
+    }
+  }
+  
+  &-body {
+    width: 100vw;
+    
+    &-list {
+      @include flexCenter;
+      flex-direction: column;
+      margin: .5rem 0 0 0;
+      padding: 0;
+      
+      .weather-item {
+        @include flexCenter;
+
+        &.weather-icon {
+          position: relative;
+
+          .icon-description {
+            position: absolute;
+            width: 100%;
+            bottom: .25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 500;
+            background-color: rgba($secondary-color, 0.85);
+            border-radius: 1rem;
+            padding: .25rem 1rem;
+          }
+        }
+
+        &.temperature {
+          flex-direction: column;
+          margin-bottom: 1rem;
+          
+          .temperature-current {
+            font-size: 3rem;
+            line-height: 1.2em;
+          }
+          
+          .temperature-feel {
+            font-size: 1rem;
+          }
+        }
+        
+        &.temp-min-max {
+          @include flexCenter;
+          flex-direction: column;
+          
+          div {
+            @include flexCenter;
+            
+            p {
+              font-weight: 500;
+            }
+
+            p+p {
+              padding-left: 1rem;
+            }
+          }
+
+          .divider {
+            margin: 0 .5rem;
+          }
+        }
+      }
+      
+      //&:first-child {
+      //  margin-bottom: 1rem;
+      //  padding-bottom: .25rem;
+      //  border-bottom: 1px solid $secondary-color;
+      //}
+    }
+  }
+  
+  p {
+    margin: 0;
+  }
+}
+
 .centered {
   align-items: baseline;
 }
 
-.line-divide {
-  flex-basis: 25%;
-  border-bottom: 1px solid black;
-  margin: 5px;
-}
-
-.icon-description {
-  position: absolute;
-  bottom: 0;
-  width: 10rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-weight: 500;
-  background-color: rgba(0, 0, 255, 0.2);
-  border-radius: 1rem;
-  padding: .25rem .25rem;
-  z-index: 1;
-}

@@ -18,7 +18,7 @@ public static class EnumExtensions
             .GetCustomAttribute<DisplayAttribute>()?
             .Name;
     } 
-    public static string GetShortNameName(this Enum enumValue)
+    public static string GetShortName(this Enum enumValue)
     {
         return enumValue.GetType()?
             .GetMember(enumValue.ToString())?
