@@ -41,7 +41,7 @@ for details on configuring this project to bundle and minify static web assets. 
       @include flexCenter;
       flex-direction: column;
       padding: 1rem 2rem;
-      background-color: $secondary-color;
+      background-color: $tertiary-orange-color;
       margin-bottom: 0;
       
       .weather-item {
@@ -70,7 +70,7 @@ for details on configuring this project to bundle and minify static web assets. 
     &-list {
       @include flexCenter;
       flex-direction: column;
-      margin: .5rem 0 0 0;
+      margin: 0;
       padding: 0;
       
       .weather-item {
@@ -86,7 +86,7 @@ for details on configuring this project to bundle and minify static web assets. 
             left: 50%;
             transform: translateX(-50%);
             font-weight: 500;
-            background-color: rgba($secondary-color, 0.85);
+            background-color: rgba($tertiary-orange-color, 0.7);
             border-radius: 1rem;
             padding: .25rem 1rem;
           }
@@ -102,11 +102,13 @@ for details on configuring this project to bundle and minify static web assets. 
           }
           
           .temperature-feel {
+            width: 100%;
+            height: 100%;
             font-size: 1rem;
           }
         }
         
-        &.temp-min-max {
+        &.interval {
           @include flexCenter;
           flex-direction: column;
           
@@ -128,12 +130,21 @@ for details on configuring this project to bundle and minify static web assets. 
         }
       }
       
-      //&:first-child {
-      //  margin-bottom: 1rem;
-      //  padding-bottom: .25rem;
-      //  border-bottom: 1px solid $secondary-color;
-      //}
+      &.weather-details {
+        display: inline-block;
+        padding: .5rem 2rem;
+        
+        .weather-item + .weather-item {
+          border-top: 1px solid rgba($tertiary-orange-color, 0.2);
+        }
+      }
+      
+      & + & {
+        margin-top: .75rem;
+      }
     }
+    
+    
   }
   
   p {
@@ -143,5 +154,9 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .centered {
   align-items: baseline;
+}
+
+.flex-center {
+  @include flexCenter;
 }
 

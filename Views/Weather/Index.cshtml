@@ -43,7 +43,7 @@
                             <span>°C</span>
                         </p>
                     </li>
-                    <li class="weather-item temp-min-max">
+                    <li class="weather-item interval">
                         <p>Daily</p>
                         <div>
                             <p>
@@ -57,54 +57,65 @@
                             </p>
                         </div>
                     </li>
+                    <li class="weather-item interval">
+                        <p>Sun</p>
+                        <div>
+                            <p>
+                                @Model.CurrentWeather.GetSunriseTime()
+                            </p>
+                            <span class="divider"> to </span>
+                            <p>
+                                @Model.CurrentWeather.GetSunsetTime()
+                            </p>
+                        </div>
+                    </li>
 
                 </ul>
 
-                <ul class="weather-body-list">
+                <ul class="weather-body-list weather-details">
                     <li class="weather-item">
-                        <p>Pressure</p>
+                        <p>Pressure:&nbsp;</p>
                         <p>@Model.CurrentWeather.Main.Pressure hPa</p>
                     </li>
                     <li class="weather-item">
-                        <p>Humidity</p>
+                        <p>Humidity:&nbsp;</p>
                         <p>
                             @Model.CurrentWeather.Main.Humidity
                             <span>%</span>
                         </p>
                     </li>
                     <li class="weather-item">
-                        <p>Wind</p>
-                        <div>
-                            <p>
-                                @Model.CurrentWeather.GetRoundedWind()
-                                <span>km/h</span>
-                            </p>
-                            <p>@Model.CurrentWeather.GetWindDirection()</p>
-                        </div>
+                        <p>Wind:&nbsp;</p>
+                        <p>
+                            @Model.CurrentWeather.GetRoundedWind()
+                            <span>km/h&nbsp;</span>
+                        </p>
+                        <p>@Model.CurrentWeather.GetWindDirection()</p>
                     </li>
                     <li class="weather-item">
-                        <p>Cloudy</p>
+                        <p>Cloudy:&nbsp;</p>
                         <p>
                             @Model.CurrentWeather.Clouds.All
                             <span>%</span>
                         </p>
                     </li>
                     <li class="weather-item">
-                        <p>Visibility</p>
+                        <p>Visibility:&nbsp;</p>
                         <p>@Model.CurrentWeather.GetVisibility()</p>
                     </li>
+
                 </ul>
-                <ul class="weather-body-list">
-                    <li class="weather-item">
-                        <p>Sunrise</p>
-                        <p>@Model.CurrentWeather.GetSunriseTime()</p>
-                    </li>
-                    <li class="line-divide"></li>
-                    <li class="weather-item">
-                        <p>Sunset</p>
-                        <p>@Model.CurrentWeather.GetSunsetTime()</p>
-                    </li>
-                </ul>
+
+
+                @* <ul class="weather-body-list"> *@
+                @* *@
+                @*     <li class="weather-item"> *@
+                @*         <p>@Model.CurrentWeather.GetSunriseTime()</p> *@
+                @*     </li> *@
+                @*     <li class="weather-item"> *@
+                @*         <p>@Model.CurrentWeather.GetSunsetTime()</p> *@
+                @*     </li> *@
+                @* </ul> *@
             </div>
             break;
         case HttpStatusCode.NotFound:
