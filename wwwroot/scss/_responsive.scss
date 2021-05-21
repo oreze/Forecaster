@@ -1,11 +1,123 @@
-﻿//@include mobile-md {
-//
+﻿@include media-xs {
+  .weather-main {
+    position: relative;
+    flex-direction: row ;
+    padding-bottom: 1rem ;
+    align-items: center ;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      @include transform(translateX(-50%));
+      height: 1px;
+      width: 80%;
+      max-width: 50rem;
+      background: linear-gradient(to right, $primary-orange-color, $primary-blue-color, $secondary-orange-color);
+    }
+    &.temperature {
+      margin-bottom: 0 ;
+    }
+  }
+  
+  .weather-daily {
+    flex-direction: row;
+    
+    .weather-item + .weather-item {
+      margin-left: 2rem;
+    }
+  }
+}
+
+
+
+
+@include media-sm {
+  .social-icons {
+    flex-direction: row !important;
+    
+    a + a {
+      margin-left: .25rem;
+    }
+  }
+  
+  .copyright {
+    bottom: 0 !important;
+    right: .5rem !important;
+    @include transform(rotate(0) translate(0, 0) !important);
+    //  Hack to remove blur from Google Chrome
+  }
+
+  .weather-details {
+    display: flex !important;
+    flex-direction: row !important;
+
+    .weather-item {
+      flex-direction: column;
+    }
+    
+    .weather-item + .weather-item {
+      margin-left: 1rem;
+      border-top: none !important;
+    }
+  }
+}
+
+@include media-md {
+  a {
+    color: #000;
+  }
+  
+  header {
+    .menu-btn {
+      display: none;
+    }
+    
+    nav {
+      @include flexCenter;
+      visibility: visible;
+      position: relative;
+      top: auto;
+      left: auto;
+      right: auto;
+      width: auto;
+      transition: none;
+
+      .nav-list {
+        height: auto;
+        flex-direction: row;
+        background: none;
+        @include transform(translateY(0));
+        transition: none;
+        margin: 0;
+
+        &__item {
+          @include transform(translateX(0));
+          transition: none !important;
+          
+          .nav-list__link {
+            font-size: 1.5rem;
+            padding: 0;
+            text-transform: none;
+            transition-property: color;
+          }
+        }
+        
+        &__item + .nav-list__item {
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+
+
+//@include media-lg {
+//  
 //}
 //
-//@include mobile-lg {
-// 
-//}
-//
-//@include mobile-xl {
+//@include media-xl {
 //  
 //}

@@ -19,6 +19,10 @@ $header-max-height: 10vh;
   align-items: center;
 }
 
+@mixin box-shadow-inset {
+  box-shadow: inset 0 0 6px 1px rgba(#000, 0.15);
+}
+
 @mixin transform($property) {
   -ms-transform: $property;
   -webkit-transform: $property;
@@ -106,6 +110,7 @@ input {
 
 a {
   text-decoration: none;
+  color: #fff;
 }
 
 @function getFontColor($color) {
@@ -113,6 +118,37 @@ a {
     @return #000;
   } @else {
     @return #fff;
+  }
+}
+
+@mixin media-xs {
+  @media screen and (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+
+@mixin media-md {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media screen and (min-width: 1366px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
   }
 }
 

@@ -1,15 +1,15 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-@import 'config';
-@import 'responsive';
-@import "menu";
 @import '~bootstrap/scss/bootstrap';
+@import 'config';
+@import "menu";
+
 
 #weather-mode {
   text-align: center;
   text-align-last: center;
-  
+
   > option {
     text-align: left;
   }
@@ -18,11 +18,11 @@ for details on configuring this project to bundle and minify static web assets. 
 #location-input-form {
   @include flexCenter;
   flex-direction: column;
-  
+
   .form-group {
     @include flexCenter;
     flex-direction: column;
-    
+
     & + .form-group {
       margin-top: 1rem;
     }
@@ -33,46 +33,47 @@ for details on configuring this project to bundle and minify static web assets. 
   @include flexCenter;
   flex-direction: column;
   text-align: center;
-  
+
   &-header {
     //border-bottom: 1px solid $secondary-color;
-    
+
     &-list {
       @include flexCenter;
       flex-direction: column;
       padding: 1rem 2rem;
-      background-color: $tertiary-orange-color;
+      background: linear-gradient(45deg, $tertiary-orange-color, $secondary-orange-color);
+      @include box-shadow-inset;
       margin-bottom: 0;
-      
+
       .weather-item {
         @include flexCenter;
         flex-direction: column;
-        
+
         &.coordinates {
           flex-direction: row;
-          
-          p + p {   // margin between cords
+
+          p + p { // margin between cords
             margin-left: 1.5rem;
           }
         }
       }
     }
-    
-    
+
+
     h1 {
       margin: 0;
     }
   }
-  
+
   &-body {
     width: 100vw;
-    
+
     &-list {
       @include flexCenter;
       flex-direction: column;
       margin: 0;
       padding: 0;
-      
+
       .weather-item {
         @include flexCenter;
 
@@ -95,31 +96,31 @@ for details on configuring this project to bundle and minify static web assets. 
         &.temperature {
           flex-direction: column;
           margin-bottom: 1rem;
-          
+
           .temperature-current {
             font-size: 3rem;
             line-height: 1.2em;
           }
-          
+
           .temperature-feel {
             width: 100%;
             height: 100%;
             font-size: 1rem;
           }
         }
-        
+
         &.interval {
           @include flexCenter;
           flex-direction: column;
-          
+
           div {
             @include flexCenter;
-            
+
             p {
               font-weight: 500;
             }
 
-            p+p {
+            p + p {
               padding-left: 1rem;
             }
           }
@@ -128,25 +129,27 @@ for details on configuring this project to bundle and minify static web assets. 
             margin: 0 .5rem;
           }
         }
+        
+        h1, h2, h3, h4, h5, h6 {
+          margin: 0;
+        }
       }
-      
+
       &.weather-details {
         display: inline-block;
         padding: .5rem 2rem;
-        
+
         .weather-item + .weather-item {
           border-top: 1px solid rgba($tertiary-orange-color, 0.2);
         }
       }
-      
+
       & + & {
         margin-top: .75rem;
       }
     }
-    
-    
   }
-  
+
   p {
     margin: 0;
   }
@@ -159,4 +162,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .flex-center {
   @include flexCenter;
 }
+
+// IMPORT MEDIA QUERIES TO OVERWRITE STYLES
+@import "responsive";
 

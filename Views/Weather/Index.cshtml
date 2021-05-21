@@ -27,7 +27,7 @@
                 </ul>
             </div>
             <div class="weather-body">
-                <ul class="weather-body-list">
+                <ul class="weather-body-list weather-main">
                     <li class="weather-item weather-icon">
                         <img src="@Model.CurrentWeather.GetIconSourceUri(IconSize.Four)" alt="@weather?.Description">
                         <p class="icon-description">@weather?.Description.Capitalize()</p>
@@ -43,8 +43,10 @@
                             <span>°C</span>
                         </p>
                     </li>
+                </ul>
+                <ul class="weather-body-list weather-daily">
                     <li class="weather-item interval">
-                        <p>Daily</p>
+                        <h5>Daily</h5>
                         <div>
                             <p>
                                 @Model.CurrentWeather.GetFormattedMinTemperature()
@@ -58,7 +60,7 @@
                         </div>
                     </li>
                     <li class="weather-item interval">
-                        <p>Sun</p>
+                        <h5>Sun</h5>
                         <div>
                             <p>
                                 @Model.CurrentWeather.GetSunriseTime()
@@ -69,9 +71,7 @@
                             </p>
                         </div>
                     </li>
-
                 </ul>
-
                 <ul class="weather-body-list weather-details">
                     <li class="weather-item">
                         <p>Pressure:&nbsp;</p>
