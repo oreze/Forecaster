@@ -44,6 +44,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
+      <Content Remove="Forecaster.Test\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,6 +56,19 @@
       <None Update=".dockerignore">
         <DependentUpon>Dockerfile</DependentUpon>
       </None>
+      <None Remove="Forecaster.Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Forecaster.Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Forecaster.Test\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="Forecaster.Test\Forecaster.Test.csproj" />
     </ItemGroup>
 
     <Target Name="Create bundles" BeforeTargets="BeforeBuild">
