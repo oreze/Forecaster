@@ -67,10 +67,6 @@
       <EmbeddedResource Remove="Forecaster.Test\**" />
     </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="Forecaster.Test\Forecaster.Test.csproj" />
-    </ItemGroup>
-
     <Target Name="Create bundles" BeforeTargets="BeforeBuild">
       <Exec Command="npm run build" />
     </Target>

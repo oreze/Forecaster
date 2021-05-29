@@ -124,6 +124,6 @@ namespace Forecaster.Services
             return UnixTime.AddSeconds(weather.SysData.Sunset).ToString("t");
         }
 
-
+        
     }
 }
