@@ -1,5 +1,3 @@
-using System;
-
 namespace Forecaster.Models
 {
     public class ErrorViewModel

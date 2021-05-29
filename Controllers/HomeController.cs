@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using System.Diagnostics;
 using Forecaster.Models;
 using Forecaster.Models.OpenWeather;
 using Forecaster.Services;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace Forecaster.Controllers

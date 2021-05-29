@@ -11,27 +11,23 @@
 </head>
 <body>
     <header>
-        <div class="menu">
-            <h3 class="menu-logo">ForeCaster</h3>
-            <div class="menu-btn">
-                <span class="menu-btn__burger"></span>
+        <div class="header-container">
+            <div class="menu">
+                <a class="menu-logo" asp-controller="Home" asp-action="Index">ForeCaster</a>
+                <div class="menu-btn">
+                    <span class="menu-btn__burger"></span>
+                </div>
             </div>
-        </div>
 
-        <nav>
-            <ul class="nav-list">
-                <li class="nav-list__item">
-                    <a href="" class="nav-list__link">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-list__item">
-                    <a href="" class="nav-list__link">
-                        About
-                    </a>
-                </li>
-            </ul>
-        </nav>
+            <nav>
+                <ul class="nav-list">
+                    <li class="nav-list__item">
+                        <a asp-controller="Home" asp-action="Index" class="nav-list__link">
+                            Home
+                        </a>
+                    </li>
+                </ul>
+            </nav></div>
     </header>
     <main role="main">
         @RenderBody()

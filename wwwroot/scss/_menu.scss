@@ -10,131 +10,146 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+  @include flexCenter;
   height: 60px;
   width: 100vw;
   background-color: $tertiary-orange-color;
   z-index: 10;
   box-shadow: 0 0 3px black;
-
-  .menu {
+  
+  .header-container {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     width: 100%;
-    padding: 0 2rem;
+    max-width: 50rem;
     
-    &-logo {
-      margin: 0;
-    }
-  }
-
-  nav {
-    visibility: hidden;
-    position: fixed;
-    top: -100vh;
-    left: 0;
-    width: 100vw;
-    @include transition-easy-normal;
-
-    &.open {
-      visibility: visible;
-      top: 0;
-      height: 100vh;
-    }
-
-    .nav-list {
+    
+    .menu {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      background: rgba(black, 0.97);
-      list-style-type: none;
-      padding-right: 1rem;
-      @include transform(translateY(-100%));
-      @include transition-easy-normal;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 100%;
+      padding: 0 2rem;
 
-      &.open {
-        transform: translateY(0);
-      }
-
-      &__item {
-        @include transform(translateX(-100vw));
-        @include transition-easy-normal;
-
-        &.open {
-          @include transform(translateX(0));
-        }
-
-        &.active > a {
-          color: #fff;
-        }
-      }
-
-      &__link {
-        display: inline-block;
+      &-logo {
         font-size: 2rem;
-        text-transform: uppercase;
-        padding: 2rem 0;
+        font-weight: 600;
+        margin: 0;
         @include transition-easy-fastest;
 
         &:hover {
-          color: $tertiary-orange-color;
+          color: $primary-blue-color;
         }
       }
     }
-  }
 
-  .menu-btn {
-    position: relative;
-    cursor: pointer;
-    z-index: 1;
-    height: 20px;
-    width: 40px;
-    margin: 10px;
-    transition: all .5s ease-in-out;
-
-    &__burger {
-      @include burger-span-basic;
-      top: .5rem;
-      width: 100%;
+    nav {
+      visibility: hidden;
+      position: fixed;
+      top: -100vh;
+      left: 0;
+      width: 100vw;
       @include transition-easy-normal;
 
-      &::before {
-        content: '';
-        @include burger-span-basic;
-        bottom: .5rem;
-        width: 100%;
-        @include transition-easy-normal
+      &.open {
+        visibility: visible;
+        top: 0;
+        height: 100vh;
       }
 
-      &::after {
-        content: '';
-        @include burger-span-basic;
-        top: .5rem;
-        width: 75%;
+      .nav-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background: rgba(black, 0.97);
+        list-style-type: none;
+        padding-right: 1rem;
+        @include transform(translateY(-100%));
         @include transition-easy-normal;
+
+        &.open {
+          transform: translateY(0);
+        }
+
+        &__item {
+          @include transform(translateX(-100vw));
+          @include transition-easy-normal;
+
+          &.open {
+            @include transform(translateX(0));
+          }
+
+          &.active > a {
+            color: #fff;
+          }
+        }
+
+        &__link {
+          display: inline-block;
+          font-size: 2rem;
+          text-transform: uppercase;
+          padding: 2rem 0;
+          @include transition-easy-fastest;
+
+          &:hover {
+            color: $secondary-blue-color;
+          }
+        }
       }
     }
 
-    &.open {
-      width: 5rem;
+    .menu-btn {
+      position: relative;
+      cursor: pointer;
+      z-index: 1;
+      height: 20px;
+      width: 40px;
+      margin: 10px;
+      transition: all .5s ease-in-out;
 
-      .menu-btn__burger {
-        background-color: white;
+      &__burger {
+        @include burger-span-basic;
+        top: .5rem;
+        width: 100%;
+        @include transition-easy-normal;
 
         &::before {
-          background-color: #fff;
+          content: '';
+          @include burger-span-basic;
+          bottom: .5rem;
+          width: 100%;
+          @include transition-easy-normal
         }
 
         &::after {
-          background-color: #fff;
-          width: 100%;
+          content: '';
+          @include burger-span-basic;
+          top: .5rem;
+          width: 75%;
+          @include transition-easy-normal;
+        }
+      }
+
+      &.open {
+        width: 5rem;
+
+        .menu-btn__burger {
+          background-color: white;
+
+          &::before {
+            background-color: #fff;
+          }
+
+          &::after {
+            background-color: #fff;
+            width: 100%;
+          }
         }
       }
     }

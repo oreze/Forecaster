@@ -33,6 +33,9 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
+      <_ContentIncludedByDefault Remove="Forecaster.Test\obj\Forecaster.Test.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="Forecaster.Test\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Forecaster.Test\obj\project.packagespec.json" />
     </ItemGroup>
 
     <ItemGroup>

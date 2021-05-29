@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
-using Forecaster.Models.OpenWeather.Partial;
 using Forecaster.Models.OpenWeather.Partial;
 
 namespace Forecaster.Models.OpenWeather

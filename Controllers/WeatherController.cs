@@ -1,9 +1,6 @@
-﻿using System.Net;
-using System.Threading.Tasks;
-using Forecaster.Models.OpenWeather;
+﻿using System.Threading.Tasks;
 using Forecaster.Services;
 using Microsoft.AspNetCore.Mvc;
-using Serilog;
 
 namespace Forecaster.Controllers
 {

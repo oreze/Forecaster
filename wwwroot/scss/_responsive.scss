@@ -70,42 +70,44 @@
   }
   
   header {
-    .menu-btn {
-      display: none;
-    }
-    
-    nav {
-      @include flexCenter;
-      visibility: visible;
-      position: relative;
-      top: auto;
-      left: auto;
-      right: auto;
-      width: auto;
-      transition: none;
+    .header-container {
+      .menu-btn {
+        display: none;
+      }
 
-      .nav-list {
-        height: auto;
-        flex-direction: row;
-        background: none;
-        @include transform(translateY(0));
+      nav {
+        @include flexCenter;
+        visibility: visible;
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        width: auto;
         transition: none;
-        margin: 0;
 
-        &__item {
-          @include transform(translateX(0));
-          transition: none !important;
-          
-          .nav-list__link {
-            font-size: 1.5rem;
-            padding: 0;
-            text-transform: none;
-            transition-property: color;
+        .nav-list {
+          height: auto;
+          flex-direction: row;
+          background: none;
+          @include transform(translateY(0));
+          transition: none;
+          margin: 0;
+
+          &__item {
+            @include transform(translateX(0));
+            transition: none !important;
+
+            .nav-list__link {
+              font-size: 1.5rem;
+              padding: 0;
+              text-transform: none;
+              transition-property: color;
+            }
           }
-        }
-        
-        &__item + .nav-list__item {
-          margin-left: 1rem;
+
+          &__item + .nav-list__item {
+            margin-left: 1rem;
+          }
         }
       }
     }
