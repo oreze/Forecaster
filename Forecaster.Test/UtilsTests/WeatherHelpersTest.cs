@@ -52,6 +52,21 @@ namespace Forecaster.Test
             Assert.Equal(returnName, validName);
         }
 
+        [Theory]
+        [InlineData(IconSize.Four, "http://openweathermap.org/img/wn/01d@4x.png")]
+        [InlineData(IconSize.Two, "http://openweathermap.org/img/wn/01d@2x.png")]
+        [InlineData(IconSize.One, "http://openweathermap.org/img/wn/01d.png")]
+        public void GetIconSourceUri_DifferentSizes_ValidUri(IconSize size, string uri)
+        {
+            var weather = new Weather() { Icon = "01d"};
+            var cityWeather = new CityWeather() { Weather = new List<Weather> {weather} };
+
+            var iconUri = cityWeather.GetIconSourceUri(size);
+            Assert.Equal(iconUri, uri);
+        }
+        
+        
+
 
         private CityWeather TestCityWeather()
         {
