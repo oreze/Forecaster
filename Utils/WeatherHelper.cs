@@ -96,12 +96,12 @@ namespace Forecaster.Services
             {
                 float x when x >= 337.5 || x < 22.5 => Arrows.North.GetShortName(),
                 float x when x >= 22.5 || x < 67.5 => Arrows.NorthEast.GetShortName(),
-                float x when x >= 22.5 || x < 67.5 => Arrows.East.GetShortName(),
-                float x when x >= 22.5 || x < 67.5 => Arrows.SouthEast.GetShortName(),
-                float x when x >= 22.5 || x < 67.5 => Arrows.South.GetShortName(),
-                float x when x >= 22.5 || x < 67.5 => Arrows.SouthWest.GetShortName(),
-                float x when x >= 22.5 || x < 67.5 => Arrows.West.GetShortName(),
-                float x when x >= 22.5 || x < 67.5 => Arrows.NorthWest.GetShortName(),
+                float x when x >= 67.5 || x < 112.5 => Arrows.East.GetShortName(),
+                float x when x >= 112.5 || x < 157.5 => Arrows.SouthEast.GetShortName(),
+                float x when x >= 157.5 || x < 202.5 => Arrows.South.GetShortName(),
+                float x when x >= 202.5 || x < 247.5 => Arrows.SouthWest.GetShortName(),
+                float x when x >= 247.5 || x < 292.5 => Arrows.West.GetShortName(),
+                float x when x >= 292.5 || x < 337.5 => Arrows.NorthWest.GetShortName(),
                 _ => throw new NullReferenceException($"{nameof(weather)} has no attribute {nameof(weather.Wind.Degrees)}.")
             };
 
