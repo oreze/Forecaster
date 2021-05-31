@@ -64,9 +64,93 @@ namespace Forecaster.Test
             var iconUri = cityWeather.GetIconSourceUri(size);
             Assert.Equal(iconUri, uri);
         }
-        
-        
 
+        [Fact]
+        public void GetFormattedTemperature_DoubleValue_RoundedValue()
+        {
+            var main = new Main() {Temp = 0.55f};
+            var cityWeather = new CityWeather() {Main = main};
+            
+            Assert.Equal(cityWeather.GetFormattedTemperature(), "0.6");
+        }
+        
+        [Theory]
+        [InlineData(1f, "1")]
+        [InlineData(0.55f, "0.6")]
+        [InlineData(-0.55f, "-0.6")]
+        public void GetFormattedTemperature_NonRoundedFloat_RoundedValue(float temperature, string valid)
+        {
+            var main = new Main() {Temp = temperature};
+            var cityWeather = new CityWeather() {Main = main};
+            
+            Assert.Equal(cityWeather.GetFormattedTemperature(), valid);
+        }
+        
+        [Theory]
+        [InlineData(1f, "1")]
+        [InlineData(0.55f, "0.6")]
+        [InlineData(-0.55f, "-0.6")]
+        public void GetFormattedMinTemperature_NonRoundedFloat_RoundedValue(float temperature, string valid)
+        {
+            var main = new Main() {TempMin = temperature};
+            var cityWeather = new CityWeather() {Main = main};
+            
+            Assert.Equal(cityWeather.GetFormattedMinTemperature(), valid);
+        }     
+        
+        [Theory]
+        [InlineData(1f, "1")]
+        [InlineData(0.55f, "0.6")]
+        [InlineData(-0.55f, "-0.6")]
+        public void GetFormattedMaxTemperature_NonRoundedFloat_RoundedValue(float temperature, string valid)
+        {
+            var main = new Main() {TempMax = temperature};
+            var cityWeather = new CityWeather() {Main = main};
+            
+            Assert.Equal(cityWeather.GetFormattedMaxTemperature(), valid);
+        }        
+        
+        [Theory]
+        [InlineData(1f, "1")]
+        [InlineData(0.55f, "0.6")]
+        [InlineData(-0.55f, "-0.6")]
+        public void GetFormattedFeelsLikeTemperature_NonRoundedFloat_RoundedValue(float temperature, string valid)
+        {
+            var main = new Main() {FeelsLike = temperature};
+            var cityWeather = new CityWeather() {Main = main};
+            
+            Assert.Equal(cityWeather.GetFormattedFeelsLikeTemperature(), valid);
+        }
+        
+        [Theory]
+        [InlineData(1f, "1")]
+        [InlineData(0.51f, "1")]
+        [InlineData(0.49f, "0")]
+        public void GetRoundedWind_NonRoundedFloat_RoundedValue(float temperature, string valid)
+        {
+            var wind = new Wind() { Speed = temperature};
+            var cityWeather = new CityWeather() { Wind = wind };
+            
+            Assert.Equal(cityWeather.GetRoundedWind(), valid);
+        }
+
+        [Theory]
+        [InlineData(22.5f, "🡥")]
+        [InlineData(67.5f, "🡢")]
+        [InlineData(112.5f, "🡦")]
+        [InlineData(157.5f, "🡣")]
+        [InlineData(202.5f, "🡧")]
+        [InlineData(247.5f, "🡠")]
+        [InlineData(292.5f, "🡤")]
+        [InlineData(337.5f, "🡡")]
+        public void GetWindDirection_DegreesFloat_ValidDirectionArrow(float degrees, string valid)
+        {
+            var wind = new Wind() {Degrees = degrees};
+            var cityWeather = new CityWeather() {Wind = wind};
+            
+            Assert.Equal(valid, cityWeather.GetWindDirection());
+        }
+        
 
         private CityWeather TestCityWeather()
         {
