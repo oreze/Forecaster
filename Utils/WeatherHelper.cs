@@ -14,39 +14,39 @@ namespace Forecaster.Services
             Coordinates coords = weather.Coordinates;
             if (coord is GeoCoordinate.Longitude)
             {
-                string LongitudeDirection;
+                string longitudeDirection;
 
                 if (coords.Longitude > 0)
-                    LongitudeDirection = coords.Longitude + "° E";
+                    longitudeDirection = coords.Longitude + "° E";
                 else if (coords.Longitude < 0)
-                    LongitudeDirection = Math.Abs((double)coords.Longitude) + "° W";
+                    longitudeDirection = Math.Abs((double)coords.Longitude) + "° W";
                 else
-                    LongitudeDirection = coords.Longitude + "°";
+                    longitudeDirection = coords.Longitude + "°";
 
-                return LongitudeDirection;
+                return longitudeDirection;
             }
             else
             {
-                string LatitudeDirection;
+                string latitudeDirection;
 
                 if (coords.Latitude > 0)
-                    LatitudeDirection = coords.Latitude + "° N";
+                    latitudeDirection = coords.Latitude + "° N";
                 else if (coords.Latitude < 0)
-                    LatitudeDirection = Math.Abs((double)coords.Latitude) + "° S";
+                    latitudeDirection = Math.Abs((double)coords.Latitude) + "° S";
                 else
-                    LatitudeDirection = coords.Latitude + "°";
+                    latitudeDirection = coords.Latitude + "°";
 
-                return LatitudeDirection;
+                return latitudeDirection;
             }
         }
-        
+
         public static string GetCountry(this CityWeather weather)
         {
             Log.Information("Looking for " + weather.SysData.Country + " short name");
             foreach (Countries value in Enum.GetValues(typeof(Countries)))
             {
-                var FoundedShortName = value.GetShortName();
-                if (FoundedShortName.Equals(weather.SysData.Country.ToUpper()))
+                var foundedShortName = value.GetShortName();
+                if (foundedShortName.Equals(weather.SysData.Country.ToUpper()))
                     return value.GetDisplayName();
             }
             return null;
@@ -70,7 +70,7 @@ namespace Forecaster.Services
         Math.Round(weather.Main.Temp, 1)
                 .ToString()
                 .Replace(",", ".");
-        
+
         public static string GetFormattedMinTemperature(this CityWeather weather) =>
             Math.Round(weather.Main.TempMin, 1)
                 .ToString()
@@ -79,8 +79,8 @@ namespace Forecaster.Services
             Math.Round(weather.Main.TempMax, 1)
                 .ToString()
                 .Replace(",", ".");
-        
-        public static string GetFormattedFeelsLikeTemperature(this CityWeather weather) => 
+
+        public static string GetFormattedFeelsLikeTemperature(this CityWeather weather) =>
             Math.Round(weather.Main.FeelsLike, 1)
                 .ToString()
                 .Replace(",", ".");
@@ -109,7 +109,7 @@ namespace Forecaster.Services
             weather.Visibility switch
             {
                 int x when x < 1000 => x + " m",
-                int x when x >= 1000 => Math.Round(x/1000.0, 1).ToString().Replace(",", ".") + " km",
+                int x when x >= 1000 => Math.Round(x / 1000.0, 1).ToString().Replace(",", ".") + " km",
                 _ => throw new NullReferenceException($"{nameof(weather)} has no attribute {nameof(weather.Visibility)}.")
             };
 
@@ -123,7 +123,5 @@ namespace Forecaster.Services
             DateTime UnixTime = new();
             return UnixTime.AddSeconds(weather.SysData.Sunset).ToString("t");
         }
-
-        
     }
 }
