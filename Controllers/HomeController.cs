@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Forecaster.Models;
 using Forecaster.Models.OpenWeather;
 using Forecaster.Services;
@@ -12,7 +13,7 @@ namespace Forecaster.Controllers
         private readonly OpenWeatherService _openWeather;
 
         public HomeController(OpenWeatherService openWeather)
-        { 
+        {
             _openWeather = openWeather;
         }
 
@@ -21,11 +22,19 @@ namespace Forecaster.Controllers
         public IActionResult Index()
         {
             return View();
-        }      
-        
+        }
+
+        // GET: Forecaster/Weather
+        public async Task<IActionResult> Weather(string location)
+        {
+            var WeatherTuple = await _openWeather.GetLocationWeather(location);
+
+            return View(WeatherTuple);
+        }
+
         // POST: Forecaster/Index
         [HttpPost]
-        public IActionResult Index([Bind("Location,Model")]GetWeather weather)
+        public async Task<IActionResult> Index([Bind("Location,Model")]GetWeather weather)
         {
             Log.Information("GetWeather object passed to \"weather/index\" method");
             Log.Information("Mode " + weather.Mode);
@@ -33,11 +42,7 @@ namespace Forecaster.Controllers
 
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", new
-                {
-                    Controller = "Weather", Action = "Index",
-                    location = weather.Location, mode = weather.Mode
-                });
+                return RedirectToAction(nameof(Weather), new {location = weather.Location});
             }
             else
             {

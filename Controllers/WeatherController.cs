@@ -17,7 +17,7 @@ namespace Forecaster.Controllers
         public async Task<IActionResult> Index(string location, string mode)
         {
             var WeatherTuple = await _openWeather.GetLocationWeather(location);
-            
+
             return View(WeatherTuple);
         }
     }
