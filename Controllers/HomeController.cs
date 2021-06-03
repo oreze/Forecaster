@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Forecaster.Models;
 using Forecaster.Models.OpenWeather;
@@ -24,17 +25,9 @@ namespace Forecaster.Controllers
             return View();
         }
 
-        // GET: Forecaster/Weather
-        public async Task<IActionResult> Weather(string location)
-        {
-            var WeatherTuple = await _openWeather.GetLocationWeather(location);
-
-            return View(WeatherTuple);
-        }
-
         // POST: Forecaster/Index
         [HttpPost]
-        public async Task<IActionResult> Index([Bind("Location,Model")]GetWeather weather)
+        public async Task<IActionResult> Index([Bind("Location,Model")] GetWeather weather)
         {
             Log.Information("GetWeather object passed to \"weather/index\" method");
             Log.Information("Mode " + weather.Mode);
@@ -42,7 +35,7 @@ namespace Forecaster.Controllers
 
             if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Weather), new {location = weather.Location});
+                return RedirectToAction(nameof(Weather), new { location = weather.Location });
             }
             else
             {
@@ -50,6 +43,13 @@ namespace Forecaster.Controllers
             }
         }
 
+        // GET: Forecaster/Weather
+        public async Task<IActionResult> Weather(string location)
+        {
+            var WeatherTuple = await _openWeather.GetLocationWeather(location);
+            return View(WeatherTuple);
+
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -58,7 +58,7 @@ namespace Forecaster.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
