@@ -6,8 +6,8 @@ namespace Forecaster.Models.Enums
     {
         [Display(Name = "Current")]
         Current,
-        [Display(Name = "Daily")]
-        Daily
+        // [Display(Name = "Daily")]
+        // Daily
         
     }
 }
