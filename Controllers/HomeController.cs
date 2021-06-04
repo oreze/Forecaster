@@ -12,7 +12,6 @@ namespace Forecaster.Controllers
     public class HomeController : Controller
     {
         private readonly OpenWeatherService _openWeather;
-
         public HomeController(OpenWeatherService openWeather)
         {
             _openWeather = openWeather;
@@ -51,6 +50,8 @@ namespace Forecaster.Controllers
 
         }
         
+        
+        // GET: Forecaster/Error
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
