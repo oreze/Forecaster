@@ -34,9 +34,9 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap\LICENSE" />
-      <_ContentIncludedByDefault Remove="Forecaster.Test\obj\Forecaster.Test.csproj.nuget.dgspec.json" />
-      <_ContentIncludedByDefault Remove="Forecaster.Test\obj\project.assets.json" />
-      <_ContentIncludedByDefault Remove="Forecaster.Test\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="..\Forecaster.Test\obj\Forecaster.Test.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="..\Forecaster.Test\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="..\Forecaster.Test\obj\project.packagespec.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -45,7 +45,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <Content Remove="Forecaster.Test\**" />
+      <Content Remove="..\Forecaster.Test\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -57,18 +57,18 @@
       <None Update=".dockerignore">
         <DependentUpon>Dockerfile</DependentUpon>
       </None>
-      <None Remove="Forecaster.Test\**" />
+      <None Remove="..\Forecaster.Test\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Forecaster.Test\**" />
+      <Compile Remove="..\Forecaster.Test\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="Forecaster.Test\**" />
+      <EmbeddedResource Remove="..\Forecaster.Test\**" />
     </ItemGroup>
 
-    <Target Name="Create bundles" BeforeTargets="BeforeBuild">
+  <Target Name="Create bundles" BeforeTargets="BeforeBuild">
       <Exec Command="npm run build" />
     </Target>
 

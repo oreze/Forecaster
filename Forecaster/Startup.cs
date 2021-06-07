@@ -22,7 +22,7 @@ namespace Forecaster
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            
+
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .Enrich.FromLogContext()
@@ -30,7 +30,7 @@ namespace Forecaster
                 .CreateLogger();
             Log.Information("Serilog is running!");
 
-            services.AddHttpClient<OpenWeatherService>();
+            services.AddHttpClient<IOpenWeatherHttpService, OpenWeatherService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

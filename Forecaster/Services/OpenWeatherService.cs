@@ -15,7 +15,7 @@ namespace Forecaster.Services
         private HttpClient _client { get; }
         private IConfiguration _configuration { get; set; }
         private readonly IWebHostEnvironment _env;
-        
+
 
         public OpenWeatherService(HttpClient client,
             IConfiguration configuration,
@@ -28,19 +28,19 @@ namespace Forecaster.Services
             _configuration = configuration;
             _env = env;
         }
-        
+
         public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location, string units="metric")
         {
             var requestUri = "/data/2.5/" +
                              "weather?q=" + location +
                              "&units=" + units +
                              "&appid=" + GetApiKey();
-            
+
             var response = await _client.GetAsync(requestUri);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    using var responseStream = await response.Content.ReadAsStreamAsync();
+                    await using var responseStream = await response.Content.ReadAsStreamAsync();
                     return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
                 }
                 else

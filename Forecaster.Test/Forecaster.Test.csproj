@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Forecaster.csproj" />
+      <ProjectReference Include="..\Forecaster\Forecaster.csproj" />
     </ItemGroup>
 
 </Project>
