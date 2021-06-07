@@ -11,8 +11,9 @@ namespace Forecaster.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly OpenWeatherService _openWeather;
-        public HomeController(OpenWeatherService openWeather)
+        private readonly IOpenWeatherHttpService _openWeather;
+
+        public HomeController(IOpenWeatherHttpService openWeather)
         {
             _openWeather = openWeather;
         }
@@ -34,28 +35,25 @@ namespace Forecaster.Controllers
 
             if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Weather), new { location = weather.Location });
+                return RedirectToAction(nameof(Weather), new {location = weather.Location});
             }
-            else
-            {
-                return View();
-            }
+            return View();
+
         }
 
         // GET: Forecaster/Weather
         public async Task<IActionResult> Weather(string location)
         {
-            var WeatherTuple = await _openWeather.GetLocationWeather(location);
-            return View(WeatherTuple);
-
+            var weatherTuple = await _openWeather.GetLocationWeather(location);
+            return View(weatherTuple);
         }
-        
-        
+
+
         // GET: Forecaster/Error
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
         }
     }
 }

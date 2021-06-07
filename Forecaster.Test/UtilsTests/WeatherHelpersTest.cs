@@ -72,7 +72,7 @@ namespace Forecaster.Test
             var main = new Main() { Temp = 0.55f };
             var cityWeather = new CityWeather() { Main = main };
 
-            Assert.Equal(cityWeather.GetFormattedTemperature(), "0.6");
+            Assert.Equal("0.6", cityWeather.GetFormattedTemperature());
         }
 
         [Theory]

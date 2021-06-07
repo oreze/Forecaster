@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace Forecaster.Services
 {
-    public class OpenWeatherService
+    public class OpenWeatherService : IOpenWeatherHttpService
     {
         private HttpClient _client { get; }
         private IConfiguration _configuration { get; set; }
