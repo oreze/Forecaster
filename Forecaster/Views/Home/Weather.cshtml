@@ -103,19 +103,7 @@
                         <p>Visibility:&nbsp;</p>
                         <p>@Model.CurrentWeather.GetVisibility()</p>
                     </li>
-
                 </ul>
-
-
-                @* <ul class="weather-body-list"> *@
-                @* *@
-                @*     <li class="weather-item"> *@
-                @*         <p>@Model.CurrentWeather.GetSunriseTime()</p> *@
-                @*     </li> *@
-                @*     <li class="weather-item"> *@
-                @*         <p>@Model.CurrentWeather.GetSunsetTime()</p> *@
-                @*     </li> *@
-                @* </ul> *@
             </div>
             break;
         case HttpStatusCode.NotFound:
@@ -125,4 +113,7 @@
             <p>Something went wrong. Try again.</p>
             break;
     }
+    <div>
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Go back</a>
+    </div>
 </div>

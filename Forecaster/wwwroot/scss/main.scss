@@ -1,7 +1,4 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-@import '~bootstrap/scss/bootstrap';
+﻿@import '~/bootstrap/scss/bootstrap';
 @import 'config';
 @import "menu";
 
@@ -129,7 +126,7 @@ for details on configuring this project to bundle and minify static web assets. 
             margin: 0 .5rem;
           }
         }
-        
+
         h1, h2, h3, h4, h5, h6 {
           margin: 0;
         }

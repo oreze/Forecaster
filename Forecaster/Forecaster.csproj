@@ -50,7 +50,7 @@
 
     <ItemGroup>
     <!-- extends watching group to include *.js, *.scss and files -->
-      <Watch Include="**\*.js;**\*.scss;**\*.css" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*" />
+      <Watch Include="**\*.js;**\*.scss;**\*.css" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*;wwwroot\dist\*" />
     </ItemGroup>
 
     <ItemGroup>
@@ -70,6 +70,6 @@
 
   <Target Name="Create bundles" BeforeTargets="BeforeBuild">
       <Exec Command="npm run build" />
-    </Target>
+  </Target>
 
 </Project>

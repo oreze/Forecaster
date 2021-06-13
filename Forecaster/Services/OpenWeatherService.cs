@@ -29,7 +29,8 @@ namespace Forecaster.Services
             _env = env;
         }
 
-        public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location, string units="metric")
+        public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location,
+            string units = "metric")
         {
             var requestUri = "/data/2.5/" +
                              "weather?q=" + location +
@@ -38,15 +39,13 @@ namespace Forecaster.Services
 
             var response = await _client.GetAsync(requestUri);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    await using var responseStream = await response.Content.ReadAsStreamAsync();
-                    return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
-                }
-                else
-                {
-                    return (new CityWeather(), response.StatusCode);
-                }
+            if (response.IsSuccessStatusCode)
+            {
+                await using var responseStream = await response.Content.ReadAsStreamAsync();
+                return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
+            }
+
+            return (new CityWeather(), response.StatusCode);
         }
 
         private string GetApiKey()
@@ -55,7 +54,6 @@ namespace Forecaster.Services
                 return _configuration["Api:OpenWeather:ApiKey"];
             else
                 return Environment.GetEnvironmentVariable("OPENWEATHERAPIKEY");
-
         }
     }
 }
