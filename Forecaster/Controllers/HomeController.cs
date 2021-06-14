@@ -42,10 +42,18 @@ namespace Forecaster.Controllers
         }
 
         // GET: Forecaster/Weather
-        public async Task<IActionResult> Weather(string location)
+        public async Task<IActionResult> Weather(string location, string? units = "metric")
         {
             var weatherTuple = await _openWeather.GetLocationWeather(location);
             return View(weatherTuple);
+        }
+
+        // GET: Forecaster/Weather
+        [ActionName("WeatherGeolocation")]
+        public async Task<IActionResult> Weather(double latitude, double longitude, string? units = "metric")
+        {
+            var weatherTuple = await _openWeather.GetGeoLocationWeather(latitude, longitude);
+            return View(nameof(Weather), weatherTuple);
         }
 
 

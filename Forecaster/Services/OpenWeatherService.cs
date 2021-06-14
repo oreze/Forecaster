@@ -38,13 +38,29 @@ namespace Forecaster.Services
                              "&appid=" + GetApiKey();
 
             var response = await _client.GetAsync(requestUri);
-
             if (response.IsSuccessStatusCode)
             {
                 await using var responseStream = await response.Content.ReadAsStreamAsync();
                 return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
             }
+            return (new CityWeather(), response.StatusCode);
+        }
 
+        public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetGeoLocationWeather(double latitude, 
+            double longitude, string units = "metric")
+        {
+            var requestUri = "/data/2.5/" +
+                             "weather?lat=" + latitude +
+                             "&lon=" + longitude +
+                             "&units=" + units +
+                             "&appid=" + GetApiKey();
+
+            var response = await _client.GetAsync(requestUri);
+            if (response.IsSuccessStatusCode)
+            {
+                await using var responseStream = await response.Content.ReadAsStreamAsync();
+                return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
+            }
             return (new CityWeather(), response.StatusCode);
         }
 

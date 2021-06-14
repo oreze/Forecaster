@@ -1,4 +1,5 @@
 ﻿@using System.Net
+@using Castle.Core.Internal
 @using Forecaster.Models.Enums
 @using Forecaster.Models.OpenWeather.Partial
 @using Forecaster.Services
@@ -17,7 +18,7 @@
             <div class="weather-header">
                 <ul class="weather-header-list">
                     <li class="weather-item">
-                        <h1>@Model.CurrentWeather.Name</h1>
+                        <h1>@(Model.CurrentWeather.Name.IsNullOrEmpty() ? "Unknown" : Model.CurrentWeather.Name)</h1>
                         <p>@Model.CurrentWeather.GetCountry()</p>
                     </li>
                     <li class="weather-item coordinates">

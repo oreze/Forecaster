@@ -46,7 +46,7 @@ namespace Forecaster.Services
             foreach (Countries value in Enum.GetValues(typeof(Countries)))
             {
                 var foundedShortName = value.GetShortName();
-                if (foundedShortName.Equals(weather.SysData.Country.ToUpper()))
+                if (foundedShortName.Equals(weather.SysData.Country?.ToUpper()))
                     return value.GetDisplayName();
             }
             return null;

@@ -14,5 +14,8 @@ namespace Forecaster.Services
     {
         public Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location,
             string units = "metric");
+
+        public Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetGeoLocationWeather(double longitude,
+            double latitude, string units = "metric");
     }
 }
