@@ -1,0 +1,50 @@
+﻿@using Forecaster.Models.Enums
+@model Forecaster.Models.OpenWeather.GetWeather
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form id="location-input-form" asp-controller="Home" asp-action="Index" method="post">
+    <div class="form-group">
+        <label for="location">Enter your location</label>
+        <input id="location" class="form-control" type="text" asp-for="Location" placeholder="your city...">
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Weather mode:</label>
+        <div class="select-box">
+            <div class="select-box__current">
+                @foreach (var item in Html.GetEnumSelectList<Modes>())
+                {
+                    <div class="select-box__value">
+                        @if (item.Value == "0")
+                        {
+                            <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text" checked/>
+                        }
+                        else
+                        {
+                            <input class="select-box__input" type="radio" value="@item.Value" name="@item.Text"/>
+                        }
+                        <p class="select-box__input-text">@item.Text</p>
+                    </div>
+                }
+                <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true"/>
+            </div>
+            <ul class="select-box__list">
+                @foreach (var item in Html.GetEnumSelectList<Modes>())
+                {
+                    <li>
+                        <label class="select-box__option" for="@item.Value" aria-hidden="aria-hidden">@item.Text</label>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Index" class="btn btn-primary"/>
+    </div>
+</form>
+<div class="geolocation">
+    <p>or</p>
+    <button id="geolocation-btn" class="btn btn-primary geolocation-btn">Check weather in your location</button>
+</div>

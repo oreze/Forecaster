@@ -1,0 +1,308 @@
+﻿@mixin burger-span-basic {
+  position: absolute;
+  right: 0;
+  height: 4px;
+  background-color: getFontColor($background-color);
+}
+
+header {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flexCenter;
+  height: 60px;
+  width: 100vw;
+  background-color: $tertiary-orange-color;
+  z-index: 10;
+  box-shadow: 0 0 3px black;
+  
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    max-width: 50rem;
+    
+    
+    .menu {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-direction: row;
+      width: 100%;
+      padding: 0 2rem;
+
+      &-logo {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 0;
+        @include transition-easy-fastest;
+
+        &:hover {
+          color: $menulink-hover-color;
+        }
+      }
+    }
+
+    nav {
+      visibility: hidden;
+      position: fixed;
+      top: -100vh;
+      left: 0;
+      width: 100vw;
+      @include transition-easy-normal;
+
+      &.open {
+        visibility: visible;
+        top: 0;
+        height: 100vh;
+      }
+
+      .nav-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background: rgba(black, 0.97);
+        list-style-type: none;
+        padding-right: 1rem;
+        @include transform(translateY(-100%));
+        @include transition-easy-normal;
+
+        &.open {
+          transform: translateY(0);
+        }
+
+        &__item {
+          @include transform(translateX(-100vw));
+          @include transition-easy-normal;
+
+          &.open {
+            @include transform(translateX(0));
+          }
+
+          &.active > a {
+            color: $menulink-hover-color;
+          }
+        }
+
+        &__link {
+          display: inline-block;
+          font-size: 2rem;
+          text-transform: uppercase;
+          padding: 2rem 0;
+          @include transition-easy-fastest;
+
+          &:hover {
+            color: $menulink-hover-color;
+          }
+        }
+      }
+    }
+
+    .menu-btn {
+      position: relative;
+      cursor: pointer;
+      z-index: 1;
+      height: 20px;
+      width: 40px;
+      margin: 10px;
+      transition: all .5s ease-in-out;
+
+      &__burger {
+        @include burger-span-basic;
+        top: .5rem;
+        width: 100%;
+        @include transition-easy-normal;
+
+        &::before {
+          content: '';
+          @include burger-span-basic;
+          bottom: .5rem;
+          width: 100%;
+          @include transition-easy-normal
+        }
+
+        &::after {
+          content: '';
+          @include burger-span-basic;
+          top: .5rem;
+          width: 75%;
+          @include transition-easy-normal;
+        }
+      }
+
+      &.open {
+        width: 5rem;
+
+        .menu-btn__burger {
+          background-color: white;
+
+          &::before {
+            background-color: #fff;
+          }
+
+          &::after {
+            background-color: #fff;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: .75rem;
+  left: 0;
+  padding: 0 .75rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .social-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .fa-discord {
+      color: #7289da;
+    }
+
+    .fa-linkedin {
+      color: #0077B5;
+    }
+
+    .fa-github {
+      color: #211F1F;
+    }
+  }
+
+  .copyright {
+    font-size: .75rem;
+    position: fixed;
+    bottom: .5rem;
+    right: .25rem;
+    display: flex;
+    flex-direction: column;
+    @include transform(rotate(90deg) translate(-2.25em, -3em));
+    //  Hack to remove blur from Google Chrome
+    -webkit-transform-origin: 50% 51%;
+  }
+}
+
+// Custom dropdown menu - taken from https://codepen.io/miniven/pen/ZJydge
+
+.select-box {
+  position: relative;
+  display: block;
+  width: 10rem;
+  margin: 0 auto;
+  color: #60666d;
+
+  &.open {
+    .select-box__current {
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+
+    .select-box__list {
+      display: block;
+      max-height: 200px;
+      overflow: auto;
+      opacity: 1;
+
+      .select-box__option {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__current {
+    position: relative;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    cursor: pointer;
+    outline: none;
+    
+    & + .select-box__list {
+      margin-top: 4px;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+  }
+
+  &__value {
+    display: flex;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .select-box__input-text {
+      display: block;
+    }
+  }
+
+  &__input-text {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: .5rem .5rem;
+    background-color: #fff;
+    border: 2px solid $primary-orange-color;
+    border-radius: 10px;
+  }
+
+  &__list {
+    display: none;
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+
+    > li {
+      border: 1px solid lightgray;
+      font-weight: 500;
+
+      label {
+        &:hover {
+          background-color: $secondary-blue-color;
+        }
+      }
+    }
+  }
+
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: #fff;
+
+    &:hover,
+    &:focus {
+      color: #546c84;
+      background-color: #fbfbfb;
+    }
+  }
+}
+
+
+
+

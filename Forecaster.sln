@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forecaster", "Forecaster.csproj", "{773F6178-23C9-41BB-B160-BA7D570A2BB7}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forecaster.Test", "Forecaster.Test\Forecaster.Test.csproj", "{9355FD3D-20EE-4F1F-A0DA-87D9743587FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forecaster", "Forecaster\Forecaster.csproj", "{8C88F3EE-AEA4-4687-A90B-6F00373F211F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{773F6178-23C9-41BB-B160-BA7D570A2BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{773F6178-23C9-41BB-B160-BA7D570A2BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{773F6178-23C9-41BB-B160-BA7D570A2BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{773F6178-23C9-41BB-B160-BA7D570A2BB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9355FD3D-20EE-4F1F-A0DA-87D9743587FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9355FD3D-20EE-4F1F-A0DA-87D9743587FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9355FD3D-20EE-4F1F-A0DA-87D9743587FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9355FD3D-20EE-4F1F-A0DA-87D9743587FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C88F3EE-AEA4-4687-A90B-6F00373F211F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C88F3EE-AEA4-4687-A90B-6F00373F211F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C88F3EE-AEA4-4687-A90B-6F00373F211F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C88F3EE-AEA4-4687-A90B-6F00373F211F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C393D14-74E0-4D79-9ACA-A8F59188CA5C}
 	EndGlobalSection
 EndGlobal

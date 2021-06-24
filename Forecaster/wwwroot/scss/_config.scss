@@ -1,0 +1,155 @@
+﻿$background-color: #fff;
+$primary-orange-color: #FFA500;
+$secondary-orange-color: #FF9138;
+$tertiary-orange-color: #FF7D61;
+$primary-blue-color: #009CFF;
+$secondary-blue-color: #00B4FF;
+$tertiary-blue-color: #00CDFF;
+$menulink-hover-color: #fff;
+
+$input-border-color: rgb(69, 174, 255);
+$font-size-basic: 18px;
+$input-background-color-hover: rgb(214, 228, 255);
+$input-border-color-active: rgb(76, 114, 176);
+
+$header-max-height: 10vh;
+
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box-shadow-inset {
+  box-shadow: inset 0 0 6px 1px rgba(#000, 0.15);
+}
+
+@mixin transform($property) {
+  -ms-transform: $property;
+  -webkit-transform: $property;
+  transform: $property;
+}
+
+@mixin transition-easy-longest {
+  transition: all 1s ease-in-out;
+}
+
+@mixin transition-easy-long {
+  transition: all .75s ease-in-out;
+}
+
+@mixin transition-easy-normal {
+  transition: all .5s ease-in-out;
+}
+
+@mixin transition-easy-fast {
+  transition: all .25s ease-in-out;
+}
+
+@mixin transition-easy-fastest {
+  transition: all .15s ease-in-out;
+}
+
+@mixin media-md {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  @include flexCenter;
+  min-height: 100vh;
+  width: 100vw;
+  padding-top: 5rem;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  background-color: $background-color;
+  color: getFontColor($background-color);
+}
+
+main {
+  width: 100vw;
+}
+
+ul, ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  box-sizing: content-box;
+  border: 2px solid $input-border-color;
+  border-radius: 10px;
+  outline: none;
+  transition: .25s ease;
+
+  &:hover {
+    background-color: $input-background-color-hover;
+  }
+
+  &:focus {
+    border-color: $input-border-color-active;
+    background-color: $input-background-color-hover;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+@function getFontColor($color) {
+  @if (lightness($color) > 40%) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+@mixin media-xs {
+  @media screen and (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+
+@mixin media-md {
+  @media screen and (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media screen and (min-width: 1366px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media screen and (min-width: 1600px) {
+    @content;
+  }
+}
+

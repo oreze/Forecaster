@@ -1,0 +1,24 @@
+{
+  "name": "Forecaster",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "webpack --progress --profile",
+    "production": "webpack --progress --profile --mode production"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.2.5",
+    "bootstrap": "^5.0.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.4",
+    "cssnano": "^5.0.2",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "node-sass": "^5.0.0",
+    "postcss-loader": "^5.2.0",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0"
+  }
+}

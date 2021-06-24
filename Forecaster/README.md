@@ -44,25 +44,11 @@ App made as "proof of concept" before something more serious. Based on openweath
    ```git clone https://github.com/oreze/Forecaster.git```
 2. **OPTIONAL** checkout to development branch\
    ```git checkout development```
-<<<<<<< HEAD
-3. Run NPM install all dependencies
-=======
 3. Run NPM install all dependencies\
->>>>>>> geolocation-current-weather
    ```npm install```
 4. Install all packages from NuGet\
    [Current list of used packages](#nuget-packages)
 5. Add OpenWeather api key to dotnet secrets as "Api:OpenWeather:ApiKey"
-<<<<<<< HEAD
-6. Use this command to run
-   ```dotnet run```
-
-### Future plans
-To be honest, i have no special plans at the moment. I want to finish basic feature (checking current weather), add long term forecast, add some geolocation, maybe use to PostgreSQL to store statistic data about weather (Entity Framework Core). If i would had some idea i\`ll place it here.
-
----
-**Feel free to contact me if you have any questions, ideas or concerns about project/documentation.**
-=======
 6. Use this command to run\
    ```dotnet run```
 
@@ -71,4 +57,3 @@ To be honest, i have no special plans at the moment. I want to finish basic feat
 
 ---
 **Feel free to contact me if you have any questions, ideas or concerns about project/documentation.**
->>>>>>> geolocation-current-weather

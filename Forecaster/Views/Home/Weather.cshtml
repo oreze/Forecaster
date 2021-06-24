@@ -1,0 +1,118 @@
+﻿@using System.Net
+@using Castle.Core.Internal
+@using Forecaster.Models.Enums
+@using Forecaster.Models.OpenWeather.Partial
+@using Forecaster.Services
+@using Forecaster.Utils
+@using Serilog
+@model (Forecaster.Models.OpenWeather.CityWeather CurrentWeather, System.Net.HttpStatusCode Code)
+@{
+    ViewData["Title"] = "XD";
+    var weather = Model.CurrentWeather.Weather?.First();
+}
+
+<div class="weather">
+    @switch (Model.Code)
+    {
+        case HttpStatusCode.OK:
+            <div class="weather-header">
+                <ul class="weather-header-list">
+                    <li class="weather-item">
+                        <h1>@(Model.CurrentWeather.Name.IsNullOrEmpty() ? "Unknown" : Model.CurrentWeather.Name)</h1>
+                        <p>@Model.CurrentWeather.GetCountry()</p>
+                    </li>
+                    <li class="weather-item coordinates">
+                        <p>@Model.CurrentWeather.GetCoordsDirections(GeoCoordinate.Latitude)</p>
+                        <p>@Model.CurrentWeather.GetCoordsDirections(GeoCoordinate.Longitude)</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="weather-body">
+                <ul class="weather-body-list weather-main">
+                    <li class="weather-item weather-icon">
+                        <img src="@Model.CurrentWeather.GetIconSourceUri(IconSize.Four)" alt="@weather?.Description">
+                        <p class="icon-description">@weather?.Description.Capitalize()</p>
+                    </li>
+                    <li class="weather-item temperature">
+                        <p class="temperature-current">
+                            @Model.CurrentWeather.GetFormattedTemperature()
+                            <span>°C</span>
+                        </p>
+                        <p class="temperature-feel">
+                            <span>Feels like </span>
+                            @Model.CurrentWeather.GetFormattedFeelsLikeTemperature()
+                            <span>°C</span>
+                        </p>
+                    </li>
+                </ul>
+                <ul class="weather-body-list weather-daily">
+                    <li class="weather-item interval">
+                        <h5>Daily</h5>
+                        <div>
+                            <p>
+                                @Model.CurrentWeather.GetFormattedMinTemperature()
+                                <span>°C</span>
+                            </p>
+                            <span class="divider"> to </span>
+                            <p>
+                                @Model.CurrentWeather.GetFormattedMaxTemperature()
+                                <span>°C</span>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="weather-item interval">
+                        <h5>Sun</h5>
+                        <div>
+                            <p>
+                                @Model.CurrentWeather.GetSunriseTime()
+                            </p>
+                            <span class="divider"> to </span>
+                            <p>
+                                @Model.CurrentWeather.GetSunsetTime()
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="weather-body-list weather-details">
+                    <li class="weather-item">
+                        <p>Pressure:&nbsp;</p>
+                        <p>@Model.CurrentWeather.Main.Pressure hPa</p>
+                    </li>
+                    <li class="weather-item">
+                        <p>Humidity:&nbsp;</p>
+                        <p>
+                            @Model.CurrentWeather.Main.Humidity
+                            <span>%</span>
+                        </p>
+                    </li>
+                    <li class="weather-item">
+                        <p>Wind:&nbsp;</p>
+                        <p>
+                            @Model.CurrentWeather.GetRoundedWind()
+                            <span>km/h&nbsp;</span>
+                        </p>
+                        <p>@Model.CurrentWeather.GetWindDirection()</p>
+                    </li>
+                    <li class="weather-item">
+                        <p>Cloudy:&nbsp;</p>
+                        <p>
+                            @Model.CurrentWeather.Clouds.All
+                            <span>%</span>
+                        </p>
+                    </li>
+                    <li class="weather-item">
+                        <p>Visibility:&nbsp;</p>
+                        <p>@Model.CurrentWeather.GetVisibility()</p>
+                    </li>
+                </ul>
+            </div>
+            break;
+        case HttpStatusCode.NotFound:
+            <p>This location doesn`t exist. Try again.</p>
+            break;
+        default:
+            <p>Something went wrong. Try again.</p>
+            break;
+    }
+    <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Go back</a>
+</div>
