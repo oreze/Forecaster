@@ -7842,6 +7842,20 @@ footer {
   .weather p {
     margin: 0; }
 
+.geolocation {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem auto 0 auto;
+  max-width: 10rem; }
+  .geolocation > * {
+    margin: auto; }
+  .geolocation-btn {
+    margin-top: 1rem;
+    min-width: 5rem;
+    background-color: #313131; }
+
 .centered {
   align-items: baseline; }
 

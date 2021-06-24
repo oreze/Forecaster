@@ -62,9 +62,9 @@ namespace Forecaster.Test.ControllersTest
 
         private CityWeather GetExampleCityWeather()
         {
-                string cityWeatherJson = "{\"coord\":{\"lon\":-0.1257,\"lat\":51.5085},\"weather\":[{\"id\":802,\"main\":\"Clouds\",\"description\":\"scattered clouds\",\"icon\":\"03d\"}],\"base\":\"stations\",\"main\":{\"temp\":22.77,\"feels_like\":22.67,\"temp_min\":20.55,\"temp_max\":23.94,\"pressure\":1024,\"humidity\":60},\"visibility\":10000,\"wind\":{\"speed\":0.45,\"deg\":281,\"gust\":2.24},\"clouds\":{\"all\":40},\"dt\":1623078332,\"sys\":{\"type\":2,\"id\":2019646,\"country\":\"GB\",\"sunrise\":1623037511,\"sunset\":1623096831},\"timezone\":3600,\"id\":2643743,\"name\":\"London\",\"cod\":200}";
-                CityWeather cityWeather = JsonSerializer.Deserialize<CityWeather>(cityWeatherJson);
-                return cityWeather;
+            string cityWeatherJson = "{\"coord\":{\"lon\":-0.1257,\"lat\":51.5085},\"weather\":[{\"id\":802,\"main\":\"Clouds\",\"description\":\"scattered clouds\",\"icon\":\"03d\"}],\"base\":\"stations\",\"main\":{\"temp\":22.77,\"feels_like\":22.67,\"temp_min\":20.55,\"temp_max\":23.94,\"pressure\":1024,\"humidity\":60},\"visibility\":10000,\"wind\":{\"speed\":0.45,\"deg\":281,\"gust\":2.24},\"clouds\":{\"all\":40},\"dt\":1623078332,\"sys\":{\"type\":2,\"id\":2019646,\"country\":\"GB\",\"sunrise\":1623037511,\"sunset\":1623096831},\"timezone\":3600,\"id\":2643743,\"name\":\"London\",\"cod\":200}";
+            CityWeather cityWeather = JsonSerializer.Deserialize<CityWeather>(cityWeatherJson);
+            return cityWeather;
         }
     }
 }
