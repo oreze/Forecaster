@@ -444,8 +444,9 @@ $RECYCLE.BIN/
 # User local settings
 appsettings.*.json
 appsettings.json
-/wwwroot/dist/bundle.css
-/wwwroot/dist/bundle.js
+Forecaster/wwwroot/dist/bundle.css
+Forecaster/wwwroot/dist/bundle.js
+
 
 TestResult/
 

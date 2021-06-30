@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text.Json;
@@ -62,6 +63,11 @@ namespace Forecaster.Services
                 return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
             }
             return (new CityWeather(), response.StatusCode);
+        }
+
+        public Task<(List<CityWeather> Weathers, HttpStatusCode Code)> GetFiveDaysWeather(string location, string units = "metric")
+        {
+            throw new NotImplementedException();
         }
 
         private string GetApiKey()
