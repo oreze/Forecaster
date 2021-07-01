@@ -34,7 +34,7 @@ namespace Forecaster.Services
             string units = "metric")
         {
             var requestUri = "/data/2.5/" +
-                             "weather?q=" + location +
+                             "forecast?q=" + location +
                              "&units=" + units +
                              "&appid=" + GetApiKey();
 
@@ -65,9 +65,20 @@ namespace Forecaster.Services
             return (new CityWeather(), response.StatusCode);
         }
 
-        public Task<(List<CityWeather> Weathers, HttpStatusCode Code)> GetFiveDaysWeather(string location, string units = "metric")
+        public async Task<(FiveDaysWeather Weathers, HttpStatusCode Code)> GetFiveDaysWeather(string location, string units = "metric")
         {
-            throw new NotImplementedException();
+            var requestUri = "/data/2.5/" +
+                             "weather?q=" + location +
+                             "&units=" + units +
+                             "&appid=" + GetApiKey();
+
+            var response = await _client.GetAsync(requestUri);
+            if (response.IsSuccessStatusCode)
+            {
+                await using var responseStream = await response.Content.ReadAsStreamAsync();
+                return (await JsonSerializer.DeserializeAsync<FiveDaysWeather>(responseStream), response.StatusCode);
+            }
+            return (new FiveDaysWeather(), response.StatusCode);
         }
 
         private string GetApiKey()

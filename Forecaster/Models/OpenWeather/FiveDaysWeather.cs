@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace Forecaster.Models.OpenWeather
 {
-    public class FiveDayWeather
+    public class FiveDaysWeather
     {
         [JsonPropertyName("cnt")] public int Count { get; set; }
         [JsonPropertyName("list")] public IEnumerable<CityWeather> Weathers { get; set; }
