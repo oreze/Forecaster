@@ -8,6 +8,7 @@ using Forecaster.Models.OpenWeather;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace Forecaster.Services
 {
@@ -34,7 +35,7 @@ namespace Forecaster.Services
             string units = "metric")
         {
             var requestUri = "/data/2.5/" +
-                             "forecast?q=" + location +
+                             "weather?q=" + location +
                              "&units=" + units +
                              "&appid=" + GetApiKey();
 
@@ -42,6 +43,7 @@ namespace Forecaster.Services
             if (response.IsSuccessStatusCode)
             {
                 await using var responseStream = await response.Content.ReadAsStreamAsync();
+                Log.Information(await response.Content.ReadAsStringAsync());
                 return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
             }
             return (new CityWeather(), response.StatusCode);

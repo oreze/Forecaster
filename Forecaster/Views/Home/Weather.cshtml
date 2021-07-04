@@ -76,12 +76,12 @@
                 <ul class="weather-body-list weather-details">
                     <li class="weather-item">
                         <p>Pressure:&nbsp;</p>
-                        <p>@Model.CurrentWeather.Main.Pressure hPa</p>
+                        <p>@Model.CurrentWeather.Main?.Pressure hPa</p>
                     </li>
                     <li class="weather-item">
                         <p>Humidity:&nbsp;</p>
                         <p>
-                            @Model.CurrentWeather.Main.Humidity
+                            @Model.CurrentWeather.Main?.Humidity
                             <span>%</span>
                         </p>
                     </li>
@@ -96,7 +96,7 @@
                     <li class="weather-item">
                         <p>Cloudy:&nbsp;</p>
                         <p>
-                            @Model.CurrentWeather.Clouds.All
+                            @Model.CurrentWeather.Clouds?.All
                             <span>%</span>
                         </p>
                     </li>
