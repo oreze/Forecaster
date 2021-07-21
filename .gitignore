@@ -450,3 +450,6 @@ appsettings.json
 TestResult/
 
 
+Forecaster/wwwroot/dist/bundle.css
+Forecaster/wwwroot/dist/bundle.js
+package-lock.json
