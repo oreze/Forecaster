@@ -21,7 +21,7 @@ namespace Forecaster.Test
         [InlineData(Countries.USA, "US")]
         public void GetShortName_ReturnValidName_ReturnTrue(Countries country, string shortName)
         {
-            Assert.Equal(shortName, country.GetShortName());
+            Assert.Equal(shortName, country.GetDisplayName(true));
         }
     }
 }

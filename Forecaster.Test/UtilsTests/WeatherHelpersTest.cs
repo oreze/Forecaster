@@ -72,7 +72,7 @@ namespace Forecaster.Test
             var main = new Main() { Temp = 0.55f };
             var cityWeather = new CityWeather() { Main = main };
 
-            Assert.Equal("0.6", cityWeather.GetFormattedTemperature());
+            Assert.Equal("0.6", cityWeather.GetFormattedFloat(cityWeather.Main.Temp));
         }
 
         [Theory]
@@ -84,7 +84,7 @@ namespace Forecaster.Test
             var main = new Main() { Temp = temperature };
             var cityWeather = new CityWeather() { Main = main };
 
-            Assert.Equal(cityWeather.GetFormattedTemperature(), valid);
+            Assert.Equal(cityWeather.GetFormattedFloat(cityWeather.Main.Temp), valid);
         }
 
         [Theory]
@@ -96,7 +96,7 @@ namespace Forecaster.Test
             var main = new Main() { TempMin = temperature };
             var cityWeather = new CityWeather() { Main = main };
 
-            Assert.Equal(cityWeather.GetFormattedMinTemperature(), valid);
+            Assert.Equal(cityWeather.GetFormattedFloat(cityWeather.Main.TempMin), valid);
         }
 
         [Theory]
@@ -108,7 +108,7 @@ namespace Forecaster.Test
             var main = new Main() { TempMax = temperature };
             var cityWeather = new CityWeather() { Main = main };
 
-            Assert.Equal(cityWeather.GetFormattedMaxTemperature(), valid);
+            Assert.Equal(cityWeather.GetFormattedFloat(cityWeather.Main.TempMax), valid);
         }
 
         [Theory]
@@ -120,7 +120,7 @@ namespace Forecaster.Test
             var main = new Main() { FeelsLike = temperature };
             var cityWeather = new CityWeather() { Main = main };
 
-            Assert.Equal(cityWeather.GetFormattedFeelsLikeTemperature(), valid);
+            Assert.Equal(cityWeather.GetFormattedFloat(cityWeather.Main.FeelsLike), valid);
         }
 
         [Theory]
@@ -132,7 +132,7 @@ namespace Forecaster.Test
             var wind = new Wind() { Speed = temperature };
             var cityWeather = new CityWeather() { Wind = wind };
 
-            Assert.Equal(cityWeather.GetRoundedWind(), valid);
+            Assert.Equal(cityWeather.GetFormattedFloat(cityWeather.Wind.Degrees), valid);
         }
 
         [Theory]

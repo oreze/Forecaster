@@ -35,12 +35,12 @@
                     </li>
                     <li class="weather-item temperature">
                         <p class="temperature-current">
-                            @Model.CurrentWeather.GetFormattedTemperature()
+                            @Model.CurrentWeather.GetFormattedFloat(@Model.CurrentWeather.Main.Temp)
                             <span>°C</span>
                         </p>
                         <p class="temperature-feel">
                             <span>Feels like </span>
-                            @Model.CurrentWeather.GetFormattedFeelsLikeTemperature()
+                            @Model.CurrentWeather.GetFormattedFloat(@Model.CurrentWeather.Main.FeelsLike)
                             <span>°C</span>
                         </p>
                     </li>
@@ -50,12 +50,12 @@
                         <h5>Daily</h5>
                         <div>
                             <p>
-                                @Model.CurrentWeather.GetFormattedMinTemperature()
+                                @Model.CurrentWeather.GetFormattedFloat(@Model.CurrentWeather.Main.TempMin)
                                 <span>°C</span>
                             </p>
                             <span class="divider"> to </span>
                             <p>
-                                @Model.CurrentWeather.GetFormattedMaxTemperature()
+                                @Model.CurrentWeather.GetFormattedFloat(Model.CurrentWeather.Main.TempMax)
                                 <span>°C</span>
                             </p>
                         </div>
@@ -88,7 +88,7 @@
                     <li class="weather-item">
                         <p>Wind:&nbsp;</p>
                         <p>
-                            @Model.CurrentWeather.GetRoundedWind()
+                            @Model.CurrentWeather.GetFormattedFloat(@Model.CurrentWeather.Wind.Degrees)
                             <span>km/h&nbsp;</span>
                         </p>
                         <p>@Model.CurrentWeather.GetWindDirection()</p>
