@@ -17,25 +17,27 @@ namespace Forecaster.Services
         private HttpClient _client { get; }
         private IConfiguration _configuration { get; set; }
         private readonly IWebHostEnvironment _env;
+        private static string OpenWeatherApiUri = "http://api.openweathermap.org";
+        private static string OpenWeatherCurrentWeatherUri = "/data/2.5/weather";
 
 
         public OpenWeatherService(HttpClient client,
             IConfiguration configuration,
             IWebHostEnvironment env)
         {
-            client.BaseAddress = new Uri("http://api.openweathermap.org");
-            client.DefaultRequestHeaders.Add("User-Agent", "Asp.Net-Forecaster");
-
             _client = client;
             _configuration = configuration;
             _env = env;
+
+            _client.BaseAddress = new Uri(OpenWeatherApiUri);
+            _client.DefaultRequestHeaders.Add("User-Agent", "Asp.Net-Forecaster");
         }
 
         public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetLocationWeather(string location,
             string units = "metric")
         {
-            var requestUri = "/data/2.5/" +
-                             "weather?q=" + location +
+            var requestUri = OpenWeatherCurrentWeatherUri +
+                             "?q=" + location +
                              "&units=" + units +
                              "&appid=" + GetApiKey();
 
@@ -43,7 +45,6 @@ namespace Forecaster.Services
             if (response.IsSuccessStatusCode)
             {
                 await using var responseStream = await response.Content.ReadAsStreamAsync();
-                Log.Information(await response.Content.ReadAsStringAsync());
                 return (await JsonSerializer.DeserializeAsync<CityWeather>(responseStream), response.StatusCode);
             }
             return (new CityWeather(), response.StatusCode);
@@ -52,8 +53,8 @@ namespace Forecaster.Services
         public async Task<(CityWeather CurrentWeather, HttpStatusCode Code)> GetGeoLocationWeather(double latitude, 
             double longitude, string units = "metric")
         {
-            var requestUri = "/data/2.5/" +
-                             "weather?lat=" + latitude +
+            var requestUri = OpenWeatherCurrentWeatherUri +
+                             "?lat=" + latitude +
                              "&lon=" + longitude +
                              "&units=" + units +
                              "&appid=" + GetApiKey();
@@ -69,8 +70,8 @@ namespace Forecaster.Services
 
         public async Task<(FiveDaysWeather Weathers, HttpStatusCode Code)> GetFiveDaysWeather(string location, string units = "metric")
         {
-            var requestUri = "/data/2.5/" +
-                             "weather?q=" + location +
+            var requestUri = OpenWeatherCurrentWeatherUri +
+                             "?q=" + location +
                              "&units=" + units +
                              "&appid=" + GetApiKey();
 

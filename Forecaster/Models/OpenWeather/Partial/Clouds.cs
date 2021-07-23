@@ -4,6 +4,7 @@ namespace Forecaster.Models.OpenWeather.Partial
 {
     public class Clouds
     {
-        [JsonPropertyName("all")] public int All { get; set; }
+        [JsonPropertyName("all")]
+        public int All { get; set; }
     }
 }
