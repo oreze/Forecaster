@@ -87,7 +87,7 @@ namespace Forecaster.Services
         private string GetApiKey()
         {
             if (_env.IsDevelopment())
-                return _configuration["Api:OpenWeather:ApiKey"];
+                return _configuration["Api:OpenWeather"];
             else
                 return Environment.GetEnvironmentVariable("OPENWEATHERAPIKEY");
         }
