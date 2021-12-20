@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   push:
@@ -23,8 +23,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test application
         run: |
-            cd Forecaster
-            dotnet test --no-restore --verbosity normal
+          cd Forecaster
+          dotnet test --no-restore --verbosity normal
   
   build:
     name: Build application and deploy artifact to packages
@@ -32,7 +32,7 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v2
-    
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -41,9 +41,9 @@ jobs:
         with:
           context: ${{env.DOCKER_APP_CONTEXT}}
           file: ${{env.DOCKER_DOCKERFILE}}
-          tags: ${{env.DOCKER_IMAGE_NAME}}:main
+          tags: ${{env.DOCKER_IMAGE_NAME}}:development
           outputs: type=docker,dest=/tmp/${{env.DOCKER_PROJECT_NAME}}.tar
-          
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
