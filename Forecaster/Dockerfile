@@ -16,4 +16,4 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 #ENTRYPOINT ["dotnet", "Forecaster.dll"]
 # Allow Heroku to choose port
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Forecaster.dll
+#CMD ASPNETCORE_URLS=http://*:$PORT dotnet Forecaster.dll
