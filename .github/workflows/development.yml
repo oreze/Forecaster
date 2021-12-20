@@ -3,10 +3,10 @@
 on:
   push:
     branches:
-      - main
+      - development
   pull_request:
     branches:
-      - main
+      - development
 
 env:
   DOCKER_APP_CONTEXT: ./Forecaster
@@ -29,6 +29,7 @@ jobs:
   build:
     name: Build application and deploy artifact to packages
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     needs: test
     steps:
       - uses: actions/checkout@v2
