@@ -9,11 +9,13 @@ on:
       - main
 
 env:
-  DOCKER_APP_CONTEXT: ./Forecaster
+  APP_DIRECTORY: ./Forecaster
   DOCKER_DOCKERFILE: ./Forecaster/Dockerfile
   DOCKER_IMAGE_NAME: forecaster
   DOCKER_PROJECT_NAME: forecaster
   IMAGE_REGISTRY_URL: docker.pkg.github.com
+  HEROKU_APP_NAME: fore-caster
+  HEROKU_EMAIL: kunas1@o2.pl
 
 jobs:
   test:
@@ -40,7 +42,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: ${{env.DOCKER_APP_CONTEXT}}
+          context: ${{env.APP_DIRECTORY}}
           file: ${{env.DOCKER_DOCKERFILE}}
           tags: ${{env.DOCKER_IMAGE_NAME}}:main
           outputs: type=docker,dest=/tmp/${{env.DOCKER_PROJECT_NAME}}.tar
@@ -50,3 +52,18 @@ jobs:
         with:
           name: ${{env.DOCKER_PROJECT_NAME}}
           path: /tmp/${{env.DOCKER_PROJECT_NAME}}.tar
+          
+  deploy:
+    name: Deploy docker image on heroku
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name != 'pull_request'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{ env.HEROKU_APP_NAME }}
+          heroku_email: ${{ env.HEROKU_EMAIL }}
+          usedocker: true
+          appdir: ${{ env.APP_DIRECTORY }}
