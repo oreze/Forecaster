@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y python3 curl git nano build-essential o
 FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /app
 COPY --from=build-env /app/out .
-#ENTRYPOINT ["dotnet", "Forecaster.dll"]
+
+ENTRYPOINT ["dotnet", "Forecaster.dll"]
 # Allow Heroku to choose port
 #CMD ASPNETCORE_URLS=http://*:$PORT dotnet Forecaster.dll
